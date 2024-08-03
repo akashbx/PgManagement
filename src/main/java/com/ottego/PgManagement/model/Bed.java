@@ -19,11 +19,6 @@ public class Bed {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "room_id", nullable = false)
-    @NotNull
-    private Room room;
-
     @NotBlank
     private String name;
 
@@ -33,4 +28,9 @@ public class Bed {
 
     @NotBlank
     private String price;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "room_id", nullable = false)
+    @NotNull
+    private Room room;
 }

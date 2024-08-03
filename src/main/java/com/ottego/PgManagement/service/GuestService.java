@@ -5,11 +5,9 @@ import com.ottego.PgManagement.repository.BedRepository;
 import com.ottego.PgManagement.repository.GuestRepository;
 import com.ottego.PgManagement.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -35,24 +33,22 @@ public class GuestService {
         guest.setCity(city);
         guest.setState(state);
         guest.setZip(zip);
-//        guest.setBeds(new ArrayList<>()); // Initialize the beds set
+        guest.setBeds(new ArrayList<>()); // Initialize the beds set
 
-//        Bed bed = bedRepository.findByName(bedName);
-//        if (bed != null) {
-//            guest.getBeds().add(bed);
-//        } else {
-//            return "Bed not found";
-//        }
+        Bed bed = bedRepository.findByName(bedName);
+        if (bed != null) {
+            guest.getBeds().add(bed);
+        } else {
+            return "Bed not found";
+        }
 
         guestRepository.save(guest);
         return "Guest added successfully";
     }
 
-    public List<Guest> getGuest(String name, String bedName) {
-        Guest guest = new Guest();
-        guest.setName(name);
-        Example<Guest> example = Example.of(guest);
-        return guestRepository.findAll(example);
+    public List<Guest> getGuest() {
+
+        return guestRepository.findAll();
     }
 
     public String updateGuest(Integer id, String email, String bedName, String name, String phone, String dob, String password, String address, String state, String zip, String city) {
@@ -73,8 +69,8 @@ public class GuestService {
 
         Bed bed = bedRepository.findByName(bedName);
         if (bed != null) {
-//            guest.getBeds().clear();
-//            guest.getBeds().add(bed);
+            guest.getBeds().clear();
+            guest.getBeds().add(bed);
         } else {
             return "Bed not found";
         }
@@ -130,15 +126,15 @@ public class GuestService {
         return "Bed added successfully!";
     }
 
-    public String updateBed(Integer bedId, String name, String s, BedStatus status, String price) {
-        Bed bed = bedRepository.findById(bedId).orElse(null);
+    public String updateBed(String bedId, String name, String s, String status, Integer price) {
+        Bed bed = bedRepository.findById(Integer.valueOf(bedId)).orElse(null);
         if (bed == null) {
             return "Bed not found";
         }
 
         bed.setName(name);
-        bed.setStatus(status);
-        bed.setPrice(price);
+        bed.setStatus(BedStatus.valueOf(status));
+        bed.setPrice(String.valueOf(price));
 
         bedRepository.save(bed);
         return "Bed updated successfully";

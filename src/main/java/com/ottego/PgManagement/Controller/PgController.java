@@ -1,6 +1,8 @@
 package com.ottego.PgManagement.Controller;
 
+import com.ottego.PgManagement.Dto.PgWithRooms;
 import com.ottego.PgManagement.model.Pg;
+import com.ottego.PgManagement.service.PgServiceImpl;
 import com.ottego.PgManagement.service.PgServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,12 +14,12 @@ import java.util.List;
 public class PgController {
 
     @Autowired
-    private PgServices pgService;
+    private PgServiceImpl pgService;
 
 
 
     @GetMapping()
-    public List<Pg> getAllPgs() {
+    public List<PgWithRooms> getAllPgs() {
         return pgService.getAllPgs();
     }
 
@@ -37,7 +39,9 @@ public class PgController {
                 pgRequest.getState(),
                 pgRequest.getZip(),
                 pgRequest.getPhone(),
-                pgRequest.getCaretaker()
+                pgRequest.getCaretaker(),
+                List.of(),
+                List.of()
         );
     }
     @PutMapping()
@@ -50,7 +54,8 @@ public class PgController {
                 pgRequest.getState(),
                 pgRequest.getZip(),
                 pgRequest.getPhone(),
-                pgRequest.getCaretaker()
+                pgRequest.getCaretaker(),
+                List.of()
         );
     }
 }

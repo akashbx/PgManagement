@@ -22,6 +22,5 @@ public class PgRequest {
     private String zip;
     private String phone;
     private String caretaker;
-    private List<Room> rooms;
 
 }

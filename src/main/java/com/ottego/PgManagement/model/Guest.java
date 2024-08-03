@@ -54,7 +54,7 @@ public class Guest {
     private String state;
     private String zip;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "pg", cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinTable(
             name = "guest_beds",
             joinColumns = @JoinColumn(name = "guest_id"),

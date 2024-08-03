@@ -8,6 +8,10 @@ import lombok.Setter;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -28,4 +32,12 @@ public class Room {
     @Enumerated(EnumType.STRING)
     @NotNull
     private RoomType roomType;
+
+    @ManyToOne
+    @JoinColumn(name = "pg_id")
+    private Pg pg;
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Bed> Beds = new ArrayList<>();
+
+
 }

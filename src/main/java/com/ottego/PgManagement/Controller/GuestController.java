@@ -1,13 +1,9 @@
 package com.ottego.PgManagement.Controller;
 
-import com.ottego.PgManagement.model.Bed;
-import com.ottego.PgManagement.model.BedStatus;
-import com.ottego.PgManagement.model.Guest;
-import com.ottego.PgManagement.model.Room;
+import com.ottego.PgManagement.model.*;
 import com.ottego.PgManagement.service.GuestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -34,9 +30,8 @@ public class GuestController {
     }
 
     @GetMapping("/guest")
-    public List<Guest> getGuest(@RequestParam String name,
-                               @RequestParam(required = false) String bedName) {
-        return guestService.getGuest(name, bedName);
+    public List<Guest> getGuest() {
+        return guestService.getGuest();
     }
 
     @PutMapping("/updateguest")
@@ -86,12 +81,14 @@ public class GuestController {
     }
 
     @PutMapping("/bed")
-    public String updateBed(@RequestParam String bedId,
-                            @RequestParam String name,
-                            @RequestParam String roomId,
-                            @RequestParam BedStatus status,
-                            @RequestParam String price) {
-        return guestService.updateBed(Integer.valueOf(bedId),roomId, name, status, price);
+    public String updateBed(@RequestBody BedRequest bedRequest) {
+        return guestService.updateBed(
+                bedRequest.getId(),
+                bedRequest.getName(),
+                bedRequest.getStatus(),
+                bedRequest.getPrice(),
+                bedRequest.getRoomId()
+        );
     }
 
     @GetMapping("/bed/{id}")

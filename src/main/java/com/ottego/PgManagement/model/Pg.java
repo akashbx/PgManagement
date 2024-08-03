@@ -9,7 +9,6 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -19,27 +18,30 @@ import java.util.List;
 public class Pg {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;  // Changed to Long for better practice with ID fields
+    private Integer id;
+
     @NotBlank
     private String name;
+
     @NotBlank
     private String address;
+
     @NotBlank
     private String city;
+
     @NotBlank
     private String state;
+
     @NotBlank
     private String zip;
+
     @NotBlank
     private String phone;
+
     @NotBlank
     private String caretaker;
 
-    @ManyToMany
-    @JoinTable(
-            name = "pg_room",
-            joinColumns = @JoinColumn(name = "pg_id"),
-            inverseJoinColumns = @JoinColumn(name = "room_id")
-    )
-    private final List<Room> rooms = new ArrayList<>();
+    @OneToMany(mappedBy = "pg", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Room> rooms = new ArrayList<>();
+
 }
