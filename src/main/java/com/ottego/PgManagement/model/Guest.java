@@ -54,11 +54,7 @@ public class Guest {
     private String state;
     private String zip;
 
-    @OneToMany(mappedBy = "pg", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(
-            name = "guest_beds",
-            joinColumns = @JoinColumn(name = "guest_id"),
-            inverseJoinColumns = @JoinColumn(name = "bed_id")
-    )
-    private List<Bed> beds = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "bed_id")
+    private Bed bed;
 }

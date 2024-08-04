@@ -21,7 +21,7 @@ public class PgWithRooms {
     private String zip;
     private String phone;
     private String caretaker;
-    private List<RoomDto> rooms;
+    private List<RoomWithBeds> rooms;
 
 
     public static PgWithRooms from(Pg pg) {
@@ -34,7 +34,7 @@ public class PgWithRooms {
         pgDto.setZip(pg.getZip());
         pgDto.setPhone(pg.getPhone());
         pgDto.setCaretaker(pg.getCaretaker());
-        pgDto.setRooms(pg.getRooms().stream().map(RoomDto::from).toList());
+        pgDto.setRooms(pg.getRooms().stream().map(RoomWithBeds::from).toList());
         return pgDto;
     }
 }

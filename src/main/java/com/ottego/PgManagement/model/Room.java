@@ -36,6 +36,7 @@ public class Room {
     @ManyToOne
     @JoinColumn(name = "pg_id")
     private Pg pg;
+
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Bed> Beds = new ArrayList<>();
 

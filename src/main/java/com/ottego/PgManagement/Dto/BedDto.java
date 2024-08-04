@@ -2,10 +2,13 @@ package com.ottego.PgManagement.Dto;
 
 import com.ottego.PgManagement.model.Bed;
 import com.ottego.PgManagement.model.BedStatus;
+import com.ottego.PgManagement.model.Guest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,7 +19,7 @@ public class BedDto {
     private String name;
     private BedStatus status;
     private String price;
-    private RoomDto room;
+    private List<GuestDto> guests;
 
     public static BedDto from(Bed bed) {
         BedDto bedDto = new BedDto();
@@ -24,7 +27,7 @@ public class BedDto {
         bedDto.setName(bed.getName());
         bedDto.setStatus(bed.getStatus());
         bedDto.setPrice(bed.getPrice());
-        bedDto.setRoom(RoomDto.from(bed.getRoom()));
+        bedDto.setGuests(bed.getGuests().stream().map(GuestDto::from).toList());
         return bedDto;
     }
 }

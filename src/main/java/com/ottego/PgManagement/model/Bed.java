@@ -8,6 +8,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -29,8 +32,10 @@ public class Bed {
     @NotBlank
     private String price;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "room_id", nullable = false)
-    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "room_id")
     private Room room;
+
+    @OneToMany(mappedBy = "bed", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Guest> guests = new ArrayList<>();
 }

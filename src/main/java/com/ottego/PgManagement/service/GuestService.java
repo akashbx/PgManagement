@@ -33,14 +33,14 @@ public class GuestService {
         guest.setCity(city);
         guest.setState(state);
         guest.setZip(zip);
-        guest.setBeds(new ArrayList<>()); // Initialize the beds set
+//        guest.setBeds(new ArrayList<>()); // Initialize the beds set
 
-        Bed bed = bedRepository.findByName(bedName);
-        if (bed != null) {
-            guest.getBeds().add(bed);
-        } else {
-            return "Bed not found";
-        }
+//        Bed bed = bedRepository.findByName(bedName);
+//        if (bed != null) {
+//            guest.getBeds().add(bed);
+//        } else {
+//            return "Bed not found";
+//        }
 
         guestRepository.save(guest);
         return "Guest added successfully";
@@ -69,8 +69,8 @@ public class GuestService {
 
         Bed bed = bedRepository.findByName(bedName);
         if (bed != null) {
-            guest.getBeds().clear();
-            guest.getBeds().add(bed);
+//            guest.getBeds().clear();
+//            guest.getBeds().add(bed);
         } else {
             return "Bed not found";
         }
