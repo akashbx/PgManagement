@@ -54,7 +54,7 @@ public class Guest {
     private String state;
     private String zip;
 
-    @ManyToOne
-    @JoinColumn(name = "bed_id")
-    private Bed bed;
+//    @ManyToOne
+//    @JoinColumn(name = "bed_id")
+//    private Bed bed;
 }

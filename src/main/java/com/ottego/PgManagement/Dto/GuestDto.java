@@ -23,17 +23,19 @@ public class GuestDto {
     private String zip;
 
     public static GuestDto from(Guest guest){
+
         GuestDto guestDto = new GuestDto();
+
         guestDto.setId(guest.getId());
-        guestDto.setName(guestDto.getName());
-        guestDto.setEmail(guestDto.getEmail());
-        guestDto.setPassword(guestDto.getPassword());
-        guestDto.setDob(guestDto.getDob());
-        guestDto.setPhone(guestDto.getPhone());
-        guestDto.setAddress(guestDto.getAddress());
-        guestDto.setCity(guestDto.getCity());
-        guestDto.setState(guestDto.getState());
-        guestDto.setZip(guestDto.getZip());
+        guestDto.setName(guest.getName());
+        guestDto.setEmail(guest.getEmail());
+        guestDto.setPassword(guest.getPassword());
+        guestDto.setDob(guest.getDob());
+        guestDto.setPhone(guest.getPhone());
+        guestDto.setAddress(guest.getAddress());
+        guestDto.setCity(guest.getCity());
+        guestDto.setState(guest.getState());
+        guestDto.setZip(guest.getZip());
         return guestDto;
     }
 }

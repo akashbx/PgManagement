@@ -36,6 +36,9 @@ public class Bed {
     @JoinColumn(name = "room_id")
     private Room room;
 
+//    @OneToMany(mappedBy = "bed", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Guest> guests = new ArrayList<>();
+
     @OneToMany(mappedBy = "bed", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Guest> guests = new ArrayList<>();
+    private List<Stay> stays = new ArrayList<>();
 }
