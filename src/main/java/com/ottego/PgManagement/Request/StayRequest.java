@@ -1,7 +1,5 @@
-package com.ottego.PgManagement.Dto;
+package com.ottego.PgManagement.Request;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,9 +11,12 @@ import lombok.Setter;
 @NoArgsConstructor
 public class StayRequest {
     private String checkIn;
+
     private String checkOut;
 
     private Integer bed_id;
 
     private Integer guest_id;
+
+    private String invoice_id;
 }

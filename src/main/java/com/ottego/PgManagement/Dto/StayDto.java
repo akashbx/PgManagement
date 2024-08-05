@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -14,16 +16,16 @@ public class StayDto {
     private Integer id;
     private String checkIn;
     private String checkOut;
-//    private BedWithGuests bed;
     private GuestDto guest;
+    private List<InvoiceWithPayment> invoice;
 
     public static StayDto from(Stay stay) {
         StayDto stayDto = new StayDto();
         stayDto.setId(stay.getId());
         stayDto.setCheckIn(stay.getCheckIn());
         stayDto.setCheckOut(stay.getCheckOut());
-//        stayDto.setBed(BedWithGuests.from(stay.getBed()));
         stayDto.setGuest(GuestDto.from(stay.getGuest()));
+        stayDto.setInvoice(stay.getInvoice().stream().map(InvoiceWithPayment::from).toList());
         return stayDto;
     }
 }

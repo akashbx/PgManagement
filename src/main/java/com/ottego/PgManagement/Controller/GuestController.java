@@ -1,5 +1,7 @@
 package com.ottego.PgManagement.Controller;
 
+import com.ottego.PgManagement.Request.BedRequest;
+import com.ottego.PgManagement.Request.GuestRequest;
 import com.ottego.PgManagement.model.*;
 import com.ottego.PgManagement.service.GuestService;
 import org.springframework.beans.factory.annotation.Autowired;

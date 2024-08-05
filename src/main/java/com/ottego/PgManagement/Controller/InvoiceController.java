@@ -1,0 +1,30 @@
+package com.ottego.PgManagement.Controller;
+
+import com.ottego.PgManagement.Dto.InvoiceWithPayment;
+import com.ottego.PgManagement.Request.InvoiceRequest;
+import com.ottego.PgManagement.Request.StayRequest;
+import com.ottego.PgManagement.model.Invoice;
+import com.ottego.PgManagement.service.InvoiceServices;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("api/invoice")
+public class InvoiceController {
+
+    @Autowired
+    private InvoiceServices invoiceServices;
+
+    @GetMapping
+    public List<InvoiceWithPayment> getInvoice() {
+        return invoiceServices.getInvoices();
+    }
+
+    @PostMapping
+    public String addInvoice(@RequestBody InvoiceRequest request) {
+        invoiceServices.save(request);
+        return "Invoice added successfully";
+    }
+}

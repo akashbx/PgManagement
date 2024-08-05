@@ -1,7 +1,7 @@
 package com.ottego.PgManagement.Dto;
 
 import com.ottego.PgManagement.model.Bed;
-import com.ottego.PgManagement.model.BedStatus;
+import com.ottego.PgManagement.model.Enum.BedStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

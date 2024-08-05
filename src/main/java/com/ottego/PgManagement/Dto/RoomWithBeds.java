@@ -1,7 +1,7 @@
 package com.ottego.PgManagement.Dto;
 
 import com.ottego.PgManagement.model.Room;
-import com.ottego.PgManagement.model.RoomType;
+import com.ottego.PgManagement.model.Enum.RoomType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

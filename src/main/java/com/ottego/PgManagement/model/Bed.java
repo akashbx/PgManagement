@@ -1,5 +1,6 @@
 package com.ottego.PgManagement.model;
 
+import com.ottego.PgManagement.model.Enum.BedStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

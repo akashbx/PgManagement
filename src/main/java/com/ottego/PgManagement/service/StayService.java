@@ -1,6 +1,6 @@
 package com.ottego.PgManagement.service;
 
-import com.ottego.PgManagement.Dto.StayRequest;
+import com.ottego.PgManagement.Request.StayRequest;
 import com.ottego.PgManagement.model.Bed;
 import com.ottego.PgManagement.model.Guest;
 import com.ottego.PgManagement.model.Stay;

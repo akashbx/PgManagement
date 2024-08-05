@@ -5,6 +5,9 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -26,4 +29,7 @@ public class Stay {
     private String checkIn;
 
     private String checkOut;
+
+    @OneToMany(mappedBy = "stay", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Invoice> invoice = new ArrayList<>();
 }

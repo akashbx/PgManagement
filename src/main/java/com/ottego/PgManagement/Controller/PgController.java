@@ -1,9 +1,9 @@
 package com.ottego.PgManagement.Controller;
 
 import com.ottego.PgManagement.Dto.PgWithRooms;
+import com.ottego.PgManagement.Request.PgRequest;
 import com.ottego.PgManagement.model.Pg;
 import com.ottego.PgManagement.service.PgServiceImpl;
-import com.ottego.PgManagement.service.PgServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

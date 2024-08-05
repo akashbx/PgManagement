@@ -1,26 +1,24 @@
-package com.ottego.PgManagement.Controller;
+package com.ottego.PgManagement.Request;
 
-import com.ottego.PgManagement.model.Room;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PgRequest {
-    private Integer id;
+public class GuestRequest {
+    private String id;
+    private String email;
+    private String bedName;
     private String name;
+    private String phone;
+    private String dob;
+    private String password;
     private String address;
-    private String city;
     private String state;
     private String zip;
-    private String phone;
-    private String caretaker;
-
+    private String city;
 }

@@ -1,4 +1,4 @@
-package com.ottego.PgManagement.Controller;
+package com.ottego.PgManagement.Request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

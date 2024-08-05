@@ -1,13 +1,14 @@
 package com.ottego.PgManagement.service;
 
 import com.ottego.PgManagement.model.*;
+import com.ottego.PgManagement.model.Enum.BedStatus;
+import com.ottego.PgManagement.model.Enum.RoomType;
 import com.ottego.PgManagement.repository.BedRepository;
 import com.ottego.PgManagement.repository.GuestRepository;
 import com.ottego.PgManagement.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
