@@ -18,7 +18,7 @@ public class BedWithGuests {
     private String name;
     private BedStatus status;
     private String price;
-//    private List<GuestDto> guests;
+    private List<ComplaintDto> complaint;
     private List<StayDto> stays;
 
     public static BedWithGuests from(Bed bed) {
@@ -27,7 +27,7 @@ public class BedWithGuests {
         bedWithGuests.setName(bed.getName());
         bedWithGuests.setStatus(bed.getStatus());
         bedWithGuests.setPrice(bed.getPrice());
-//        bedWithGuests.setGuests(bed.getGuests().stream().map(GuestDto::from).toList());
+        bedWithGuests.setComplaint(bed.getComplaint().stream().map(ComplaintDto::from).toList());
         bedWithGuests.setStays(bed.getStays().stream().map(StayDto::from).toList());
         return bedWithGuests;
     }

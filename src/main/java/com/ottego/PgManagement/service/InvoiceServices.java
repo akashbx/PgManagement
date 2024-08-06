@@ -40,4 +40,11 @@ public class InvoiceServices {
 
 
     }
+
+    public void update(InvoiceRequest request) {
+        Invoice invoice = invoiceRepository.findById(request.getId()).get();
+        invoice.setAmount(request.getAmount());
+        invoice.setStay(StayRepository.findById(request.getStayId()).get());
+        invoiceRepository.save(invoice);
+    }
 }

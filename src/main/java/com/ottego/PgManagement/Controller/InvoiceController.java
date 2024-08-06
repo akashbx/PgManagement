@@ -27,4 +27,10 @@ public class InvoiceController {
         invoiceServices.save(request);
         return "Invoice added successfully";
     }
+
+    @PutMapping
+    public String updateInvoice(@RequestBody InvoiceRequest request) {
+        invoiceServices.update(request);
+        return "Invoice updated successfully";
+    }
 }
