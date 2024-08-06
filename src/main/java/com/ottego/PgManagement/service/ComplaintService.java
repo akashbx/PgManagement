@@ -5,8 +5,10 @@ import com.ottego.PgManagement.Request.ComplaintRequest;
 import com.ottego.PgManagement.model.Bed;
 import com.ottego.PgManagement.model.Complaint;
 import com.ottego.PgManagement.model.Enum.ComplaintType;
+import com.ottego.PgManagement.model.Stay;
 import com.ottego.PgManagement.repository.BedRepository;
 import com.ottego.PgManagement.repository.ComplaintRepository;
+import com.ottego.PgManagement.repository.StayRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +19,7 @@ public class ComplaintService {
     @Autowired
     private ComplaintRepository complaintRepository;
     @Autowired
-    private BedRepository bedRepository;
+    private StayRepository stayRepository;
 
    public List<ComplaintDto> getComplaints() {
        return complaintRepository.findAll().stream().map(ComplaintDto::from).toList();
@@ -29,11 +31,11 @@ public class ComplaintService {
         complaint.setDescription(model.getDescription());
         complaint.setType(ComplaintType.valueOf(model.getType()));
 
-        model.getBedId();
+        model.getStayId();
 
-        Bed bed = bedRepository.findById(model.getBedId()).get();
+        Stay stay = stayRepository.findById(model.getStayId()).get();
 
-        complaint.setBed(bed);
+        complaint.setStay(stay);
 
         complaintRepository.save(complaint);
     }
@@ -42,7 +44,7 @@ public class ComplaintService {
         Complaint complaint = complaintRepository.findById(request.getId()).get();
         complaint.setDescription(request.getDescription());
         complaint.setType(ComplaintType.valueOf(request.getType()));
-        complaint.setBed(bedRepository.findById(request.getBedId()).get());
+        complaint.setStay(stayRepository.findById(request.getStayId()).get());
         complaintRepository.save(complaint);
     }
 }

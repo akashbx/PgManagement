@@ -31,5 +31,8 @@ public class Stay {
     private String checkOut;
 
     @OneToMany(mappedBy = "stay", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Complaint> complaint = new ArrayList<>();
+
+    @OneToMany(mappedBy = "stay", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Invoice> invoice = new ArrayList<>();
 }

@@ -26,6 +26,6 @@ public class Complaint {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "bed_id")
-    private Bed bed;
+    @JoinColumn(name = "stay_id")
+    private Stay stay;
 }

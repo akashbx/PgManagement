@@ -13,5 +13,5 @@ public class ComplaintRequest {
     private Integer id;
     private String description;
     private String type;
-    private Integer bedId;
+    private Integer stayId;
 }

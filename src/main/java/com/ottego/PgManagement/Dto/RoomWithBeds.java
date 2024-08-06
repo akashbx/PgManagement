@@ -18,7 +18,7 @@ public class RoomWithBeds {
     private String floor;
     private String roomNumber;
     private RoomType roomType;
-    private List<BedWithGuests> beds;
+    private List<BedWithStay> beds;
 
 
     public static RoomWithBeds from(Room room) {
@@ -27,7 +27,7 @@ public class RoomWithBeds {
         roomWithBeds.setFloor(room.getFloor());
         roomWithBeds.setRoomNumber(room.getRoomNumber());
         roomWithBeds.setRoomType(room.getRoomType());
-        roomWithBeds.setBeds(room.getBeds().stream().map(BedWithGuests::from).toList());
+        roomWithBeds.setBeds(room.getBeds().stream().map(BedWithStay::from).toList());
         return roomWithBeds;
     }
 }

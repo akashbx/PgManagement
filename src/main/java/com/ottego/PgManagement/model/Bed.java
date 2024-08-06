@@ -38,8 +38,5 @@ public class Bed {
     private Room room;
 
     @OneToMany(mappedBy = "bed", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Complaint> complaint = new ArrayList<>();
-
-    @OneToMany(mappedBy = "bed", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Stay> stays = new ArrayList<>();
 }
