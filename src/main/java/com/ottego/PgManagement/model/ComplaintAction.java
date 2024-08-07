@@ -1,6 +1,6 @@
 package com.ottego.PgManagement.model;
 
-import com.ottego.PgManagement.model.Enum.ComplaintType;
+import com.ottego.PgManagement.model.Enum.ActionStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -8,31 +8,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "complaints")
-public class Complaint {
+@Table(name = "ComplaintAction")
+public class ComplaintAction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Enumerated(EnumType.STRING)
-    private ComplaintType type;
+    private ActionStatus status;
 
     @NotBlank
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "stay_id")
-    private Stay stay;
-
-    @OneToMany(mappedBy = "complaint",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<ComplaintAction> complaintAction = new ArrayList<>();
-
+    @JoinColumn(name = "complaint_id")
+    private Complaint complaint;
 }

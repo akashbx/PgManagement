@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -15,12 +17,14 @@ public class ComplaintDto {
     private Integer id;
     private ComplaintType type;
     private String description;
+    private List<ComplaintActionDto> complaintAction;
 
     public static ComplaintDto from(Complaint complaint) {
         ComplaintDto complaintDto = new ComplaintDto();
         complaintDto.setId(complaint.getId());
         complaintDto.setType(complaint.getType());
         complaintDto.setDescription(complaint.getDescription());
+        complaintDto.setComplaintAction(complaint.getComplaintAction().stream().map(ComplaintActionDto::from).toList());
         return complaintDto;
     }
 

@@ -35,4 +35,7 @@ public class Stay {
 
     @OneToMany(mappedBy = "stay", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Invoice> invoice = new ArrayList<>();
+
+    @OneToMany(mappedBy ="stay", cascade =CascadeType.ALL, orphanRemoval =true)
+    private List<Diner> diners = new ArrayList<>();
 }
