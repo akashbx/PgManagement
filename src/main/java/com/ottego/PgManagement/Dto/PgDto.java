@@ -12,7 +12,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PgWithRooms {
+public class PgDto {
     private Integer id;
     private String name;
     private String address;
@@ -21,12 +21,10 @@ public class PgWithRooms {
     private String zip;
     private String phone;
     private String caretaker;
-    private List<RoomWithBeds> rooms;
-    private List<MealDto> meals;
 
 
-    public static PgWithRooms from(Pg pg) {
-        PgWithRooms pgDto = new PgWithRooms();
+    public static PgDto from(Pg pg) {
+        PgDto pgDto = new PgDto();
         pgDto.setId(pg.getId());
         pgDto.setName(pg.getName());
         pgDto.setAddress(pg.getAddress());
@@ -35,8 +33,6 @@ public class PgWithRooms {
         pgDto.setZip(pg.getZip());
         pgDto.setPhone(pg.getPhone());
         pgDto.setCaretaker(pg.getCaretaker());
-        pgDto.setRooms(pg.getRooms().stream().map(RoomWithBeds::from).toList());
-        pgDto.setMeals(pg.getMeals().stream().map(MealDto::from).toList());
         return pgDto;
     }
 }

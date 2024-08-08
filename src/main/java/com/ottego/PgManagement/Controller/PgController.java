@@ -1,5 +1,6 @@
 package com.ottego.PgManagement.Controller;
 
+import com.ottego.PgManagement.Dto.PgDto;
 import com.ottego.PgManagement.Dto.PgWithRooms;
 import com.ottego.PgManagement.Request.PgRequest;
 import com.ottego.PgManagement.model.Pg;
@@ -19,10 +20,13 @@ public class PgController {
 
 
     @GetMapping()
-    public List<PgWithRooms> getAllPgs() {
+    public List<PgDto> getAllPgs() {
         return pgService.getAllPgs();
     }
-
+    @GetMapping("all")
+    public List<PgWithRooms> getAllPgsWithRooms() {
+        return pgService.getAllPgsWithRooms();
+    }
     @GetMapping("{id}")
     public Pg getPgDetails(@PathVariable("id") Integer id) {
         return pgService.getPgDetails(id);
@@ -55,6 +59,7 @@ public class PgController {
                 pgRequest.getZip(),
                 pgRequest.getPhone(),
                 pgRequest.getCaretaker(),
+                List.of(),
                 List.of()
         );
     }

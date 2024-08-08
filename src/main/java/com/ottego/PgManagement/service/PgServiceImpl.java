@@ -1,7 +1,9 @@
 package com.ottego.PgManagement.service;
 
+import com.ottego.PgManagement.Dto.PgDto;
 import com.ottego.PgManagement.Dto.PgWithRooms;
 import com.ottego.PgManagement.model.Bed;
+import com.ottego.PgManagement.model.Meal;
 import com.ottego.PgManagement.model.Pg;
 import com.ottego.PgManagement.model.Room;
 import com.ottego.PgManagement.repository.BedRepository;
@@ -23,7 +25,7 @@ public class PgServiceImpl implements PgServices {
     @Autowired
     private BedRepository bedRepository;
 
-    public String addPg(Integer id, String name, String address, String city, String state, String zip, String phone, String caretaker, List<Room> rooms, List<Bed>beds) {
+    public String addPg(Integer id, String name, String address, String city, String state, String zip, String phone, String caretaker, List<Room> rooms, List<Meal> meal) {
         Pg pg = new Pg();
         pg.setId(id);
         pg.setName(name);
@@ -34,11 +36,12 @@ public class PgServiceImpl implements PgServices {
         pg.setPhone(phone);
         pg.setCaretaker(caretaker);
         pg.getRooms();
+        pg.getMeals();
         pgRepository.save(pg);
         return "Pg added successfully";
     }
 
-    public String updatePg(Integer id, String name, String address, String city, String state, String zip, String phone, String caretaker, List<Room> rooms) {
+    public String updatePg(Integer id, String name, String address, String city, String state, String zip, String phone, String caretaker, List<Room> rooms, List<Meal> meal) {
         Pg pg = pgRepository.findById(Math.toIntExact(id)).orElse(null);
         if (pg == null) {
             return "Pg not found";
@@ -51,12 +54,18 @@ public class PgServiceImpl implements PgServices {
         pg.setPhone(phone);
         pg.setCaretaker(caretaker);
         pg.getRooms();
+        pg.getMeals();
         pgRepository.save(pg);
         return "Pg updated successfully";
     }
 
     @Override
-    public List<PgWithRooms> getAllPgs() {
+    public List<PgDto> getAllPgs() {
+        return pgRepository.findAll().stream().map(PgDto::from).toList();
+    }
+
+    @Override
+    public List<PgWithRooms> getAllPgsWithRooms() {
         return pgRepository.findAll().stream().map(PgWithRooms::from).toList();
     }
 
