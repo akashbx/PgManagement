@@ -4,7 +4,7 @@ import com.ottego.PgManagement.Dto.PgDto;
 import com.ottego.PgManagement.Dto.PgWithRooms;
 import com.ottego.PgManagement.Request.PgRequest;
 import com.ottego.PgManagement.model.Pg;
-import com.ottego.PgManagement.service.PgServiceImpl;
+import com.ottego.PgManagement.service.PgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +15,7 @@ import java.util.List;
 public class PgController {
 
     @Autowired
-    private PgServiceImpl pgService;
+    private PgService pgService;
 
 
 
@@ -34,33 +34,13 @@ public class PgController {
 
 
     @PostMapping()
-    public String addPg(@RequestBody PgRequest pgRequest) {
-        return pgService.addPg(
-                pgRequest.getId(),
-                pgRequest.getName(),
-                pgRequest.getAddress(),
-                pgRequest.getCity(),
-                pgRequest.getState(),
-                pgRequest.getZip(),
-                pgRequest.getPhone(),
-                pgRequest.getCaretaker(),
-                List.of(),
-                List.of()
-        );
+    public String addPg(@RequestBody PgRequest Request) {
+        pgService.save(Request);
+        return "pg added successfully";
     }
     @PutMapping()
-    public String updatePg(@RequestBody PgRequest pgRequest) {
-        return pgService.updatePg(
-                pgRequest.getId(),
-                pgRequest.getName(),
-                pgRequest.getAddress(),
-                pgRequest.getCity(),
-                pgRequest.getState(),
-                pgRequest.getZip(),
-                pgRequest.getPhone(),
-                pgRequest.getCaretaker(),
-                List.of(),
-                List.of()
-        );
+    public String updatePg(@RequestBody PgRequest Request) {
+        pgService.update(Request);
+        return "pg updated successfully";
     }
 }

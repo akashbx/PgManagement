@@ -1,9 +1,12 @@
 package com.ottego.PgManagement.Controller;
 
+import com.ottego.PgManagement.Dto.StayDto;
 import com.ottego.PgManagement.Request.StayRequest;
 import com.ottego.PgManagement.service.StayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/stay")
@@ -17,6 +20,17 @@ public class StayController {
     @PostMapping
     public String addStay(@RequestBody StayRequest request) {
         stayService.save(request);
+        return "Stay added successfully";
+    }
+
+    @GetMapping
+    public List<StayDto> getAllStays() {
+        return stayService.getAllStays();
+    }
+
+    @PutMapping
+    public String updateStay(@RequestBody StayRequest request) {
+        stayService.update(request);
         return "Stay added successfully";
     }
 }

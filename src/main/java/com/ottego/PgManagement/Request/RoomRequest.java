@@ -9,10 +9,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class BedRequest {
+public class RoomRequest {
     private Integer id;
-    private String name;
-    private String status;
-    private String price;
-    private Integer roomId;
+    private String floor;
+    private String roomNumber;
+    private String roomType;
+    private Integer pg_id;
 }

@@ -10,6 +10,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class StayRequest {
+    private Integer id;
+
     private String checkIn;
 
     private String checkOut;

@@ -1,0 +1,41 @@
+package com.ottego.PgManagement.service;
+
+import com.ottego.PgManagement.Dto.BedWithStay;
+import com.ottego.PgManagement.Request.BedRequest;
+import com.ottego.PgManagement.model.Bed;
+import com.ottego.PgManagement.model.Enum.BedStatus;
+import com.ottego.PgManagement.repository.BedRepository;
+import com.ottego.PgManagement.repository.RoomRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class BedService {
+    @Autowired
+    private BedRepository bedRepository;
+    @Autowired
+    private RoomRepository roomRepository;
+
+    public void update(BedRequest request) {
+        Bed bed = bedRepository.findById(request.getId()).get();
+        bed.setName(request.getName());
+        bed.setStatus(BedStatus.valueOf(request.getStatus()));
+        bed.setPrice(request.getPrice());
+        roomRepository.findById(request.getRoomId()).ifPresent(bed::setRoom);
+        bedRepository.save(bed);
+    }
+    public void save(BedRequest request) {
+        Bed bed = new Bed();
+        bed.setName(request.getName());
+        bed.setStatus(BedStatus.valueOf(request.getStatus()));
+        bed.setPrice(request.getPrice());
+        roomRepository.findById(request.getRoomId()).ifPresent(bed::setRoom);
+        bedRepository.save(bed);
+    }
+
+    public List<BedWithStay> getAllBeds() {
+        return bedRepository.findAll().stream().map(BedWithStay::from).toList();
+    }
+}

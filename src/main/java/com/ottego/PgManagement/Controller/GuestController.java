@@ -58,43 +58,4 @@ public class GuestController {
         return guestService.getGuestById(guestId);
     }
 
-    @PutMapping("/room")
-    public String updateRoom(@RequestParam String roomId,
-                             @RequestParam String floor,
-                             @RequestParam String roomNumber,
-                             @RequestParam String roomType) {
-        return guestService.updateRoom(Integer.valueOf(roomId), floor, roomNumber, roomType);
-    }
-
-    @GetMapping("/room/{id}")
-    public Room getRoomById(@PathVariable("id") Integer roomId) {
-        return guestService.getRoomById(roomId);
-    }
-
-    @PostMapping("/addbed")
-    public String addBed(@RequestBody BedRequest bedRequest) {
-        return guestService.addBed(
-                bedRequest.getId(),
-                bedRequest.getName(),
-                bedRequest.getStatus(),
-                bedRequest.getPrice(),
-                bedRequest.getRoomId()
-        );
-    }
-
-    @PutMapping("/bed")
-    public String updateBed(@RequestBody BedRequest bedRequest) {
-        return guestService.updateBed(
-                bedRequest.getId(),
-                bedRequest.getName(),
-                bedRequest.getStatus(),
-                bedRequest.getPrice(),
-                bedRequest.getRoomId()
-        );
-    }
-
-    @GetMapping("/bed/{id}")
-    public Bed getBedById(@PathVariable("id") Integer bedId) {
-        return guestService.getBedById(bedId);
-    }
 }
