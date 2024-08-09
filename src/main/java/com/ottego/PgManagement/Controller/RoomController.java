@@ -37,4 +37,8 @@ public class RoomController {
         return "Room added successfully";
     }
 
+    @GetMapping("/count/{pgId}")
+    public long getRoomCount(@PathVariable Integer pgId) {
+        return roomService.countRoomsInPg(pgId);
+    }
 }

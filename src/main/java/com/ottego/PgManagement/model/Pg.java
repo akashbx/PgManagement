@@ -48,4 +48,7 @@ public class Pg {
     @OneToMany(mappedBy ="pg", cascade =CascadeType.ALL, orphanRemoval =true)
     private List<Meal> meals = new ArrayList<>();
 
+    @OneToMany(mappedBy = "pg", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Facility> facility = new ArrayList<>();
+
 }

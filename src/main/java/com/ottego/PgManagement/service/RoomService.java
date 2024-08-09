@@ -40,4 +40,7 @@ public class RoomService {
         pgRepository.findById(request.getPg_id()).ifPresent(room::setPg);
         roomRepository.save(room);
     }
+    public long countRoomsInPg(Integer pgId) {
+        return roomRepository.countRoomsByPgId(pgId);
+    }
 }
