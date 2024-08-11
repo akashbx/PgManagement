@@ -61,4 +61,7 @@ public class StayService {
         return stayRepository.findAll().stream().map(StayDto::from).toList();
     }
 
+    public StayDto getStayById(Integer id) {
+        return StayDto.from(stayRepository.findById(id).get());
+    }
 }

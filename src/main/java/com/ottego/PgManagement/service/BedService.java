@@ -38,4 +38,8 @@ public class BedService {
     public List<BedWithStay> getAllBeds() {
         return bedRepository.findAll().stream().map(BedWithStay::from).toList();
     }
+
+    public BedWithStay getBedById(Integer Id) {
+        return BedWithStay.from(bedRepository.findById(Id).get());
+    }
 }

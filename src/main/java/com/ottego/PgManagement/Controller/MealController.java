@@ -1,6 +1,6 @@
 package com.ottego.PgManagement.Controller;
 
-import com.ottego.PgManagement.Dto.MealDto;
+import com.ottego.PgManagement.Dto.MealDetail;
 import com.ottego.PgManagement.Request.MealRequest;
 import com.ottego.PgManagement.service.MealServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ public class MealController {
     private MealServices mealService;
 
     @GetMapping
-    public List<MealDto> getMeals() {
+    public List<MealDetail> getMeals() {
         return mealService.getMeal();
     }
 

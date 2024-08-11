@@ -47,4 +47,7 @@ public class ComplaintService {
         complaint.setStay(stayRepository.findById(request.getStayId()).get());
         complaintRepository.save(complaint);
     }
+    public ComplaintDto getComplaintById(Integer id) {
+        return ComplaintDto.from(complaintRepository.findById(id).get());
+    }
 }

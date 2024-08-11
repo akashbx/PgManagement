@@ -3,6 +3,7 @@ package com.ottego.PgManagement.service;
 import com.ottego.PgManagement.Dto.PgDto;
 import com.ottego.PgManagement.Dto.PgWithRooms;
 import com.ottego.PgManagement.Dto.PgsResponse;
+import com.ottego.PgManagement.Dto.RoomDto;
 import com.ottego.PgManagement.Request.PgRequest;
 import com.ottego.PgManagement.model.Meal;
 import com.ottego.PgManagement.model.Pg;
@@ -68,18 +69,8 @@ public class PgService  {
 
     public PgDetails getPgDetails(Integer id) {
 
-        PgDetails pg = new PgDetails();
-        PgDto dto = pgRepository.findById(id).map(PgDto::from).get();
+        PgDetails pg = pgRepository.findById(id).map(PgDetails::from).get();
         pg.noOfRooms = roomRepository.countRoomsByPgId(id);
-        pg.setName(dto.getName());
-        pg.setAddress(dto.getAddress());
-        pg.setCity(dto.getCity());
-        pg.setState(dto.getState());
-        pg.setId(dto.getId());
-        pg.setZip(dto.getZip());
-        pg.setPhone(dto.getPhone());
-        pg.setCaretaker(dto.getCaretaker());
-
         return pg;
     }
 }

@@ -40,4 +40,8 @@ public class ComplaintActionService {
         complaintAction.setComplaint(complaintRepository.findById(request.getComplaint_id()).get());
         complaintActionRepository.save(complaintAction);
     }
+
+    public ComplaintActionDto getComplaintActionById(Integer id) {
+        return ComplaintActionDto.from(complaintActionRepository.findById(id).get());
+    }
 }

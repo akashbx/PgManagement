@@ -30,4 +30,8 @@ public class BedController {
         bedService.update(bed);
         return "Bed added successfully";
     }
+    @GetMapping("/{Id}")
+    public BedWithStay getBedById(@PathVariable Integer Id) {
+        return bedService.getBedById(Id);
+    }
 }

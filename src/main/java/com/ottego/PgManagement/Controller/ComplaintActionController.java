@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/complaintaction")
+@RequestMapping("api/action")
 public class ComplaintActionController {
     @Autowired
     private ComplaintActionService complaintActionService;
@@ -29,5 +29,9 @@ public class ComplaintActionController {
     public String addComplaintAction(@RequestBody ComplaintActionRequest request) {
         complaintActionService.save(request);
         return "Complaint action added successfully";
+    }
+    @GetMapping("/{id}")
+    public ComplaintActionDto getComplaintActionId(@PathVariable Integer id) {
+        return complaintActionService.getComplaintActionById(id);
     }
 }

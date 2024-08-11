@@ -33,4 +33,8 @@ public class StayController {
         stayService.update(request);
         return "Stay added successfully";
     }
+    @GetMapping("/{id}")
+    public StayDto getStayById(@PathVariable Integer id) {
+        return stayService.getStayById(id);
+    }
 }

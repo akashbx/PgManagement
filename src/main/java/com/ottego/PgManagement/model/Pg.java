@@ -1,5 +1,6 @@
 package com.ottego.PgManagement.model;
 
+import com.ottego.PgManagement.Dto.PgDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -51,4 +52,7 @@ public class Pg {
     @OneToMany(mappedBy = "pg", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Facility> facility = new ArrayList<>();
 
+    public PgDto getRemapper() {
+        return PgDto.from(this);
+    }
 }

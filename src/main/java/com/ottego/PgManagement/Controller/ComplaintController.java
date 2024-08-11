@@ -30,4 +30,8 @@ public class ComplaintController {
         complaintService.update(request);
         return "Complaint updated successfully";
     }
+    @GetMapping("/{id}")
+    public ComplaintDto getComplaintId(@PathVariable Integer id) {
+        return complaintService.getComplaintById(id);
+    }
 }
