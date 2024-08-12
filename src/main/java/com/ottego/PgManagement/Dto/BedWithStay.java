@@ -18,7 +18,7 @@ public class BedWithStay {
     private String name;
     private BedStatus status;
     private String price;
-    private List<StayDto> stays;
+    private List<StayDetails> stays;
 
     public static BedWithStay from(Bed bed) {
         BedWithStay bedWithStay = new BedWithStay();
@@ -26,7 +26,7 @@ public class BedWithStay {
         bedWithStay.setName(bed.getName());
         bedWithStay.setStatus(bed.getStatus());
         bedWithStay.setPrice(bed.getPrice());
-        bedWithStay.setStays(bed.getStays().stream().map(StayDto::from).toList());
+        bedWithStay.setStays(bed.getStays().stream().map(StayDetails::from).toList());
         return bedWithStay;
     }
 }

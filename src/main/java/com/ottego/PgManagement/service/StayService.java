@@ -1,6 +1,6 @@
 package com.ottego.PgManagement.service;
 
-import com.ottego.PgManagement.Dto.StayDto;
+import com.ottego.PgManagement.Dto.StayDetails;
 import com.ottego.PgManagement.Request.StayRequest;
 import com.ottego.PgManagement.model.Bed;
 import com.ottego.PgManagement.model.Guest;
@@ -57,11 +57,11 @@ public class StayService {
         stayRepository.save(stay);
     }
 
-    public List<StayDto> getAllStays() {
-        return stayRepository.findAll().stream().map(StayDto::from).toList();
+    public List<StayDetails> getAllStays() {
+        return stayRepository.findAll().stream().map(StayDetails::from).toList();
     }
 
-    public StayDto getStayById(Integer id) {
-        return StayDto.from(stayRepository.findById(id).get());
+    public StayDetails getStayById(Integer id) {
+        return StayDetails.from(stayRepository.findById(id).get());
     }
 }

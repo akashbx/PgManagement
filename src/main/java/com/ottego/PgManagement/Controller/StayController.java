@@ -1,6 +1,6 @@
 package com.ottego.PgManagement.Controller;
 
-import com.ottego.PgManagement.Dto.StayDto;
+import com.ottego.PgManagement.Dto.StayDetails;
 import com.ottego.PgManagement.Request.StayRequest;
 import com.ottego.PgManagement.service.StayService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class StayController {
     }
 
     @GetMapping
-    public List<StayDto> getAllStays() {
+    public List<StayDetails> getAllStays() {
         return stayService.getAllStays();
     }
 
@@ -34,7 +34,7 @@ public class StayController {
         return "Stay added successfully";
     }
     @GetMapping("/{id}")
-    public StayDto getStayById(@PathVariable Integer id) {
+    public StayDetails getStayById(@PathVariable Integer id) {
         return stayService.getStayById(id);
     }
 }

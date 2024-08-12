@@ -1,5 +1,6 @@
 package com.ottego.PgManagement.service;
 
+import com.ottego.PgManagement.Dto.BedDetail;
 import com.ottego.PgManagement.Dto.BedWithStay;
 import com.ottego.PgManagement.Request.BedRequest;
 import com.ottego.PgManagement.model.Bed;
@@ -41,5 +42,8 @@ public class BedService {
 
     public BedWithStay getBedById(Integer Id) {
         return BedWithStay.from(bedRepository.findById(Id).get());
+    }
+    public BedDetail getBedDetailsById(Integer Id) {
+        return BedDetail.from(bedRepository.findById(Id).get());
     }
 }
