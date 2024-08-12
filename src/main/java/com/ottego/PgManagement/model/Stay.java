@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +28,10 @@ public class Stay {
     private Guest guest;
 
     @NotBlank
+    @CreationTimestamp
     private String checkIn;
 
+    @UpdateTimestamp
     private String checkOut;
 
     @OneToMany(mappedBy = "stay", cascade = CascadeType.ALL, orphanRemoval = true)
