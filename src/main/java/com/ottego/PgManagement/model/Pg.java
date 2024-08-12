@@ -1,6 +1,7 @@
 package com.ottego.PgManagement.model;
 
 import com.ottego.PgManagement.Dto.PgDto;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -24,17 +25,10 @@ public class Pg {
     @NotBlank
     private String name;
 
-    @NotBlank
-    private String address;
-
-    @NotBlank
-    private String city;
-
-    @NotBlank
-    private String state;
-
-    @NotBlank
-    private String zip;
+    @Nullable
+    @OneToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
 
     @NotBlank
     private String phone;
@@ -52,7 +46,4 @@ public class Pg {
     @OneToMany(mappedBy = "pg", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Facility> facility = new ArrayList<>();
 
-    public PgDto getRemapper() {
-        return PgDto.from(this);
-    }
 }

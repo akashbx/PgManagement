@@ -1,15 +1,9 @@
 package com.ottego.PgManagement.service;
 
-import com.ottego.PgManagement.Dto.PgDto;
-import com.ottego.PgManagement.Dto.PgWithRooms;
-import com.ottego.PgManagement.Dto.PgsResponse;
-import com.ottego.PgManagement.Dto.RoomDto;
+import com.ottego.PgManagement.Dto.*;
 import com.ottego.PgManagement.Request.PgRequest;
-import com.ottego.PgManagement.model.Meal;
-import com.ottego.PgManagement.model.Pg;
-import com.ottego.PgManagement.model.PgDetails;
-import com.ottego.PgManagement.model.Room;
-import com.ottego.PgManagement.repository.BedRepository;
+import com.ottego.PgManagement.model.*;
+import com.ottego.PgManagement.repository.AddressRepository;
 import com.ottego.PgManagement.repository.PgRepository;
 import com.ottego.PgManagement.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,17 +21,16 @@ public class PgService  {
     private PgRepository pgRepository;
 
     @Autowired
-    private BedRepository bedRepository;
+    private AddressRepository  addressRepository;
 
 
 
     public void save (PgRequest model) {
         Pg pg = new Pg();
         pg.setName(model.getName());
-        pg.setAddress(model.getAddress());
-        pg.setCity(model.getCity());
-        pg.setState(model.getState());
-        pg.setZip(model.getZip());
+        model.getAddress_id();
+        Address address = addressRepository.findById(model.getAddress_id()).get();
+        pg.setAddress(address);
         pg.setPhone(model.getPhone());
         pg.setCaretaker(model.getCaretaker());
         pgRepository.save(pg);
@@ -46,10 +39,9 @@ public class PgService  {
     public void update(PgRequest request) {
         Pg pg = pgRepository.findById(request.getId()).get();
         pg.setName(request.getName());
-        pg.setAddress(request.getAddress());
-        pg.setCity(request.getCity());
-        pg.setState(request.getState());
-        pg.setZip(request.getZip());
+        request.getAddress_id();
+        Address address = addressRepository.findById(request.getAddress_id()).get();
+        pg.setAddress(address);
         pg.setPhone(request.getPhone());
         pg.setCaretaker(request.getCaretaker());
         pgRepository.save(pg);

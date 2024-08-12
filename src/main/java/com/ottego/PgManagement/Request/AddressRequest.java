@@ -5,16 +5,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class PgRequest {
+@AllArgsConstructor
+public class AddressRequest {
     private Integer id;
-    private String name;
-    private Integer address_id;
-    private String phone;
-    private String caretaker;
-
+    private String hn;
+    private String area;
+    private String street;
+    private String city;
+    private String state;
+    private String zip;
 }

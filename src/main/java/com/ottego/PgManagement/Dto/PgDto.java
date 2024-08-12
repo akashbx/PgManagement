@@ -15,10 +15,7 @@ import java.util.List;
 public class PgDto {
     private Integer id;
     private String name;
-    private String address;
-    private String city;
-    private String state;
-    private String zip;
+    private AddressDto address;
     private String phone;
     private String caretaker;
 
@@ -27,12 +24,11 @@ public class PgDto {
         PgDto pgDto = new PgDto();
         pgDto.setId(pg.getId());
         pgDto.setName(pg.getName());
-        pgDto.setAddress(pg.getAddress());
-        pgDto.setCity(pg.getCity());
-        pgDto.setState(pg.getState());
-        pgDto.setZip(pg.getZip());
         pgDto.setPhone(pg.getPhone());
         pgDto.setCaretaker(pg.getCaretaker());
+        if (pg.getAddress() != null) {
+            pgDto.setAddress(AddressDto.from(pg.getAddress()));
+        }
         return pgDto;
     }
 }

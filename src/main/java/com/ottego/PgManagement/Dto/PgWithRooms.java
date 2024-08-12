@@ -15,10 +15,7 @@ import java.util.List;
 public class PgWithRooms {
     private Integer id;
     private String name;
-    private String address;
-    private String city;
-    private String state;
-    private String zip;
+    private AddressDto address;
     private String phone;
     private String caretaker;
     private List<FacilityDto> facilities;
@@ -30,10 +27,7 @@ public class PgWithRooms {
         PgWithRooms pgDto = new PgWithRooms();
         pgDto.setId(pg.getId());
         pgDto.setName(pg.getName());
-        pgDto.setAddress(pg.getAddress());
-        pgDto.setCity(pg.getCity());
-        pgDto.setState(pg.getState());
-        pgDto.setZip(pg.getZip());
+        pgDto.setAddress(AddressDto.from(pg.getAddress()));
         pgDto.setPhone(pg.getPhone());
         pgDto.setCaretaker(pg.getCaretaker());
         pgDto.setFacilities(pg.getFacility().stream().map(FacilityDto::from).toList());

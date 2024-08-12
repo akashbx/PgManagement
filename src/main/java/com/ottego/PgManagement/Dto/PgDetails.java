@@ -1,9 +1,6 @@
-package com.ottego.PgManagement.model;
+package com.ottego.PgManagement.Dto;
 
-import com.ottego.PgManagement.Dto.FacilityDto;
-import com.ottego.PgManagement.Dto.MealDetail;
-import com.ottego.PgManagement.Dto.MealDto;
-import com.ottego.PgManagement.Dto.RoomDto;
+import com.ottego.PgManagement.model.Pg;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,10 +15,7 @@ import java.util.List;
 public  class PgDetails{
   private Integer id;
   private String name;
-  private String address;
-  private String city;
-  private String state;
-  private String zip;
+  private AddressDto address;
   private String phone;
   private String caretaker;
   public Long noOfRooms = 0L;
@@ -33,10 +27,7 @@ public  class PgDetails{
       PgDetails pgDetail = new PgDetails();
       pgDetail.setId(pg.getId());
       pgDetail.setName(pg.getName());
-      pgDetail.setAddress(pg.getAddress());
-      pgDetail.setCity(pg.getCity());
-      pgDetail.setState(pg.getState());
-      pgDetail.setZip(pg.getZip());
+      pgDetail.setAddress(AddressDto.from(pg.getAddress()));
       pgDetail.setPhone(pg.getPhone());
       pgDetail.setCaretaker(pg.getCaretaker());
       pgDetail.setNoOfRooms((long) pg.getRooms().size());
