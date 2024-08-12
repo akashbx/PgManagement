@@ -23,7 +23,7 @@ public class Stay {
     @JoinColumn(columnDefinition = "bed_id")
     private Bed bed;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(columnDefinition = "guest_id")
     private Guest guest;
 

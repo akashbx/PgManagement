@@ -54,4 +54,7 @@ public class Guest {
     private String state;
     private String zip;
 
+    @OneToMany(mappedBy = "guest", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Stay> stays = new ArrayList<>();
+
 }
