@@ -1,5 +1,6 @@
 package com.ottego.PgManagement.Controller;
 
+import com.ottego.PgManagement.Dto.InvoiceDetail;
 import com.ottego.PgManagement.Dto.InvoiceWithPayment;
 import com.ottego.PgManagement.Request.InvoiceRequest;
 import com.ottego.PgManagement.Request.StayRequest;
@@ -32,5 +33,11 @@ public class InvoiceController {
     public String updateInvoice(@RequestBody InvoiceRequest request) {
         invoiceServices.update(request);
         return "Invoice updated successfully";
+    }
+
+
+    @GetMapping("/{id}")
+    public InvoiceDetail getInvoiceById(@PathVariable Integer id) {
+        return invoiceServices.getInvoiceById(id);
     }
 }

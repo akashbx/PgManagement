@@ -1,5 +1,6 @@
 package com.ottego.PgManagement.service;
 
+import com.ottego.PgManagement.Dto.InvoiceDetail;
 import com.ottego.PgManagement.Dto.InvoiceWithPayment;
 import com.ottego.PgManagement.Request.InvoiceRequest;
 import com.ottego.PgManagement.model.Invoice;
@@ -23,6 +24,9 @@ public class InvoiceServices {
 
     public List<InvoiceWithPayment> getInvoices() {
         return invoiceRepository.findAll().stream().map(InvoiceWithPayment::from).toList();
+    }
+    public InvoiceDetail getInvoiceById(Integer id) {
+        return InvoiceDetail.from(invoiceRepository.findById(id).get());
     }
 
     public void save(InvoiceRequest model) {

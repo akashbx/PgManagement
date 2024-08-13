@@ -1,5 +1,6 @@
 package com.ottego.PgManagement.service;
 
+import com.ottego.PgManagement.Dto.ComplaintActionDetail;
 import com.ottego.PgManagement.Dto.ComplaintActionDto;
 import com.ottego.PgManagement.Request.ComplaintActionRequest;
 import com.ottego.PgManagement.model.Complaint;
@@ -43,5 +44,9 @@ public class ComplaintActionService {
 
     public ComplaintActionDto getComplaintActionById(Integer id) {
         return ComplaintActionDto.from(complaintActionRepository.findById(id).get());
+    }
+
+    public ComplaintActionDetail getComplaintActionDetailById(Integer id) {
+        return ComplaintActionDetail.from(complaintActionRepository.findById(id).get());
     }
 }

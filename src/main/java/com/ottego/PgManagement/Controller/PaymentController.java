@@ -1,5 +1,6 @@
 package com.ottego.PgManagement.Controller;
 
+import com.ottego.PgManagement.Dto.PaymentDetail;
 import com.ottego.PgManagement.Dto.PaymentDto;
 import com.ottego.PgManagement.Request.PaymentRequest;
 import com.ottego.PgManagement.service.PaymentServices;
@@ -28,5 +29,9 @@ public class PaymentController {
     public String updatePayment(@RequestBody PaymentRequest paymentRequest) {
         paymentServices.update(paymentRequest);
         return "Payment updated successfully";
+    }
+    @GetMapping("/{id}")
+    public PaymentDetail getPaymentById(@PathVariable Integer id) {
+        return paymentServices.getPaymentById(id);
     }
 }

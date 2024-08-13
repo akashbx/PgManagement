@@ -1,6 +1,7 @@
 package com.ottego.PgManagement.Controller;
 
 import com.ottego.PgManagement.Dto.StayDetails;
+import com.ottego.PgManagement.Dto.StayWithBedRoom;
 import com.ottego.PgManagement.Request.StayRequest;
 import com.ottego.PgManagement.service.StayService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,4 +38,9 @@ public class StayController {
     public StayDetails getStayById(@PathVariable Integer id) {
         return stayService.getStayById(id);
     }
+    @GetMapping("/bed/{id}")
+    public StayWithBedRoom StayWithBedRoom(@PathVariable Integer id) {
+        return stayService.StayWithBedRoom(id);
+    }
+
 }

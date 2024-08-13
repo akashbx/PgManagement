@@ -1,6 +1,7 @@
 package com.ottego.PgManagement.service;
 
 import com.ottego.PgManagement.Dto.InvoiceWithPayment;
+import com.ottego.PgManagement.Dto.PaymentDetail;
 import com.ottego.PgManagement.Dto.PaymentDto;
 import com.ottego.PgManagement.Request.PaymentRequest;
 import com.ottego.PgManagement.model.Invoice;
@@ -21,6 +22,9 @@ public class PaymentServices {
 
     public List<PaymentDto> getPayments() {
         return paymentRepository.findAll().stream().map(PaymentDto::from).toList();
+    }
+    public PaymentDetail getPaymentById(Integer id) {
+        return PaymentDetail.from(paymentRepository.findById(id).get());
     }
 
     public void save(PaymentRequest model) {

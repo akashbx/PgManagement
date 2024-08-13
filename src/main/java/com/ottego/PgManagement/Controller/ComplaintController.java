@@ -1,5 +1,6 @@
 package com.ottego.PgManagement.Controller;
 
+import com.ottego.PgManagement.Dto.ComplaintDetail;
 import com.ottego.PgManagement.Dto.ComplaintDto;
 import com.ottego.PgManagement.Request.ComplaintRequest;
 import com.ottego.PgManagement.service.ComplaintService;
@@ -33,5 +34,10 @@ public class ComplaintController {
     @GetMapping("/{id}")
     public ComplaintDto getComplaintId(@PathVariable Integer id) {
         return complaintService.getComplaintById(id);
+    }
+
+    @GetMapping("detail/{id}")
+    public ComplaintDetail getComplaintDetailById(@PathVariable Integer id) {
+        return complaintService.getComplaintDetailById(id);
     }
 }
