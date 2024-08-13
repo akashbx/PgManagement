@@ -15,7 +15,7 @@ public class StayWithBedRoom {
     private String checkIn;
     private String checkOut;
     private GuestDto guest;
-    private BedRoom bed;
+    private BedRoom beds;
 
     public static StayWithBedRoom from(Stay stay) {
         StayWithBedRoom stayWithBedRoom = new StayWithBedRoom();
@@ -23,7 +23,7 @@ public class StayWithBedRoom {
         stayWithBedRoom.setCheckIn(stay.getCheckIn());
         stayWithBedRoom.setCheckOut(stay.getCheckOut());
         stayWithBedRoom.setGuest(GuestDto.from(stay.getGuest()));
-        stayWithBedRoom.setBed(BedRoom.from(stay.getBed()));
+        stayWithBedRoom.setBeds(BedRoom.from(stay.getBed()));
         return stayWithBedRoom;
     }
 }
