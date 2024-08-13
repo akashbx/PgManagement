@@ -1,6 +1,7 @@
 package com.ottego.PgManagement.Controller;
 
-import com.ottego.PgManagement.Request.BedRequest;
+import com.ottego.PgManagement.Dto.GuestDto;
+import com.ottego.PgManagement.Dto.GuestWithStays;
 import com.ottego.PgManagement.Request.GuestRequest;
 import com.ottego.PgManagement.model.*;
 import com.ottego.PgManagement.service.GuestService;
@@ -9,12 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/guest")
 public class GuestController {
     @Autowired
     private GuestService guestService;
 
-    @PostMapping("/newguest")
+    @PostMapping
     public String addGuest(@RequestBody GuestRequest guestRequest) {
         return guestService.addGuest(
                 guestRequest.getId(),
@@ -31,12 +32,12 @@ public class GuestController {
         );
     }
 
-    @GetMapping("/guest")
-    public List<Guest> getGuest() {
+    @GetMapping
+    public List<GuestDto> getGuest() {
         return guestService.getGuest();
     }
 
-    @PutMapping("/updateguest")
+    @PutMapping
     public String updateGuest(@RequestBody GuestRequest guestRequest) {
         return guestService.updateGuest(
                 Integer.valueOf(guestRequest.getId()),
@@ -53,9 +54,9 @@ public class GuestController {
         );
     }
 
-    @GetMapping("/guest/{id}")
-    public Guest getGuestById(@PathVariable("id") Integer guestId) {
-        return guestService.getGuestById(guestId);
+    @GetMapping("/{id}")
+    public GuestWithStays getGuestById(@PathVariable("id") Integer guestId) {
+        return guestService.getGuestWithStays(guestId);
     }
 
 }

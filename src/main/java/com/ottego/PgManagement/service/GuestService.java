@@ -1,11 +1,8 @@
 package com.ottego.PgManagement.service;
 
-import com.ottego.PgManagement.Dto.PaymentDto;
-import com.ottego.PgManagement.Dto.RoomDto;
-import com.ottego.PgManagement.Request.RoomRequest;
+import com.ottego.PgManagement.Dto.GuestDto;
+import com.ottego.PgManagement.Dto.GuestWithStays;
 import com.ottego.PgManagement.model.*;
-import com.ottego.PgManagement.model.Enum.BedStatus;
-import com.ottego.PgManagement.model.Enum.RoomType;
 import com.ottego.PgManagement.repository.BedRepository;
 import com.ottego.PgManagement.repository.GuestRepository;
 import com.ottego.PgManagement.repository.PgRepository;
@@ -45,9 +42,9 @@ public class GuestService {
         return "Guest added successfully";
     }
 
-    public List<Guest> getGuest() {
+    public List<GuestDto> getGuest() {
 
-        return guestRepository.findAll();
+        return guestRepository.findAll().stream().map(GuestDto::from).toList();
     }
 
     public String updateGuest(Integer id, String email, String bedName, String name, String phone, String dob, String password, String address, String state, String zip, String city) {
@@ -77,9 +74,17 @@ public class GuestService {
         guestRepository.save(guest);
         return "Guest updated successfully";
     }
+    public GuestWithStays getGuestWithStays(Integer id) {
+        Guest guest = guestRepository.findById(id).orElse(null);
+        if (guest == null) {
+            return null;
+        }
+        return GuestWithStays.from(guest);
+    }
 
 
     public Guest getGuestById(Integer guestId) {
+
         return guestRepository.findById(guestId).orElse(null);
     }
 }

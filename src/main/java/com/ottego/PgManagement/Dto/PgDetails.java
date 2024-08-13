@@ -27,7 +27,9 @@ public  class PgDetails{
       PgDetails pgDetail = new PgDetails();
       pgDetail.setId(pg.getId());
       pgDetail.setName(pg.getName());
-      pgDetail.setAddress(AddressDto.from(pg.getAddress()));
+      if (pg.getAddress() != null) {
+        pgDetail.setAddress(AddressDto.from(pg.getAddress()));
+      }
       pgDetail.setPhone(pg.getPhone());
       pgDetail.setCaretaker(pg.getCaretaker());
       pgDetail.setNoOfRooms((long) pg.getRooms().size());

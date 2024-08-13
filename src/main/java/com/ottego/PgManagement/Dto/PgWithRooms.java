@@ -27,7 +27,9 @@ public class PgWithRooms {
         PgWithRooms pgDto = new PgWithRooms();
         pgDto.setId(pg.getId());
         pgDto.setName(pg.getName());
-        pgDto.setAddress(AddressDto.from(pg.getAddress()));
+        if (pg.getAddress() != null) {
+            pgDto.setAddress(AddressDto.from(pg.getAddress()));
+        }
         pgDto.setPhone(pg.getPhone());
         pgDto.setCaretaker(pg.getCaretaker());
         pgDto.setFacilities(pg.getFacility().stream().map(FacilityDto::from).toList());
