@@ -17,8 +17,7 @@ public class StayDetails {
     private String checkIn;
     private String checkOut;
     private GuestDto guest;
-    private List<InvoiceWithPayment> invoice;
-    private List<ComplaintDto> complaint;
+
 
     public static StayDetails from(Stay stay) {
         StayDetails stayDetails = new StayDetails();
@@ -26,8 +25,6 @@ public class StayDetails {
         stayDetails.setCheckIn(stay.getCheckIn());
         stayDetails.setCheckOut(stay.getCheckOut());
         stayDetails.setGuest(GuestDto.from(stay.getGuest()));
-        stayDetails.setInvoice(stay.getInvoice().stream().map(InvoiceWithPayment::from).toList());
-        stayDetails.setComplaint(stay.getComplaint().stream().map(ComplaintDto::from).toList());
         return stayDetails;
     }
 }

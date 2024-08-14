@@ -2,9 +2,9 @@ package com.ottego.PgManagement.service;
 
 import com.ottego.PgManagement.Dto.RoomDetails;
 import com.ottego.PgManagement.Dto.RoomDto;
+import com.ottego.PgManagement.Dto.RoomWithStay;
 import com.ottego.PgManagement.Request.RoomRequest;
 import com.ottego.PgManagement.model.Enum.RoomType;
-import com.ottego.PgManagement.model.Pg;
 import com.ottego.PgManagement.model.Room;
 import com.ottego.PgManagement.repository.BedRepository;
 import com.ottego.PgManagement.repository.PgRepository;
@@ -46,8 +46,8 @@ public class RoomService {
     public long countRoomsInPg(Integer pgId) {
         return roomRepository.countRoomsByPgId(pgId);
     }
-    public RoomDto getRoomById(Integer id) {
-        return RoomDto.from(roomRepository.findById(id).get());
+    public RoomWithStay getRoomById(Integer id) {
+        return RoomWithStay.from(roomRepository.findById(id).get());
     }
     public RoomDetails getRoomDetailsById(Integer id) {
         RoomDetails room = RoomDetails.from(roomRepository.findById(id).get());

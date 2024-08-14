@@ -4,6 +4,7 @@ package com.ottego.PgManagement.Controller;
 
 import com.ottego.PgManagement.Dto.RoomDetails;
 import com.ottego.PgManagement.Dto.RoomDto;
+import com.ottego.PgManagement.Dto.RoomWithStay;
 import com.ottego.PgManagement.Request.RoomRequest;
 import com.ottego.PgManagement.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,11 @@ public class RoomController {
         return roomService.countRoomsInPg(pgId);
     }
     @GetMapping("/{id}")
-    public RoomDetails getRoomById(@PathVariable Integer id) {
+    public RoomWithStay getRoomById(@PathVariable Integer id) {
+        return roomService.getRoomById(id);
+    }
+    @GetMapping("details/{id}")
+    public RoomDetails getRoomDetailsById(@PathVariable Integer id) {
         return roomService.getRoomDetailsById(id);
     }
 }
