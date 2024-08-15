@@ -18,6 +18,7 @@ public class AddressDto {
     private String city;
     private String state;
     private String zip;
+    private Integer pg_id;
 
     public static AddressDto from(Address address) {
         AddressDto addressDto = new AddressDto();
@@ -28,6 +29,7 @@ public class AddressDto {
         addressDto.setCity(address.getCity());
         addressDto.setState(address.getState());
         addressDto.setZip(address.getZip());
+        addressDto.setPg_id(address.getPg().getId());
         return addressDto;
     }
 }

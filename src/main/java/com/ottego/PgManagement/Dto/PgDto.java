@@ -17,6 +17,7 @@ public class PgDto {
     private String name;
     private AddressDto address;
     private String phone;
+    private String image;
     private String caretaker;
 
 
@@ -24,11 +25,12 @@ public class PgDto {
         PgDto pgDto = new PgDto();
         pgDto.setId(pg.getId());
         pgDto.setName(pg.getName());
-        pgDto.setPhone(pg.getPhone());
-        pgDto.setCaretaker(pg.getCaretaker());
         if (pg.getAddress() != null) {
             pgDto.setAddress(AddressDto.from(pg.getAddress()));
         }
+        pgDto.setPhone(pg.getPhone());
+        pgDto.setImage(pg.getImage());
+        pgDto.setCaretaker(pg.getCaretaker());
         return pgDto;
     }
 }

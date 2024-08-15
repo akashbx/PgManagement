@@ -25,13 +25,15 @@ public class Pg {
     @NotBlank
     private String name;
 
-    @Nullable
-    @OneToOne
-    @JoinColumn(name = "address_id")
+    @OneToOne(mappedBy = "pg", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private Address address;
 
     @NotBlank
     private String phone;
+
+    @NotBlank
+    public String image;
 
     @NotBlank
     private String caretaker;

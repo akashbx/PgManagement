@@ -14,7 +14,7 @@ import lombok.Setter;
 @Table(name = "address")
 public class Address {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "pg_id")
     private Integer id;
     private String hn;
     private String area;
@@ -22,4 +22,9 @@ public class Address {
     private String city;
     private String state;
     private String zip;
+
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "pg_id")
+    private Pg pg;
 }

@@ -17,4 +17,5 @@ public class AddressRequest {
     private String city;
     private String state;
     private String zip;
+    private Integer pg_id;
 }

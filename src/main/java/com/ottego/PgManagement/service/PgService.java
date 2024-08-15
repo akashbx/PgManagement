@@ -28,10 +28,9 @@ public class PgService  {
     public void save (PgRequest model) {
         Pg pg = new Pg();
         pg.setName(model.getName());
-        model.getAddress_id();
-        Address address = addressRepository.findById(model.getAddress_id()).get();
-        pg.setAddress(address);
         pg.setPhone(model.getPhone());
+        pg.setAddress(model.getAddress());
+        pg.setImage(model.getImage());
         pg.setCaretaker(model.getCaretaker());
         pgRepository.save(pg);
     }
@@ -39,10 +38,9 @@ public class PgService  {
     public void update(PgRequest request) {
         Pg pg = pgRepository.findById(request.getId()).get();
         pg.setName(request.getName());
-        request.getAddress_id();
-        Address address = addressRepository.findById(request.getAddress_id()).get();
-        pg.setAddress(address);
         pg.setPhone(request.getPhone());
+        pg.setAddress(request.getAddress());
+        pg.setImage(request.getImage());
         pg.setCaretaker(request.getCaretaker());
         pgRepository.save(pg);
 

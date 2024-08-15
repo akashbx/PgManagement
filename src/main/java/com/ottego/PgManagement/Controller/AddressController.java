@@ -28,4 +28,8 @@ public class AddressController {
     public List<AddressDto> getAllAddresses() {
         return addressService.getAll();
     }
+    @GetMapping("/{id}")
+    public AddressDto getAddressById(@PathVariable Integer id) {
+        return addressService.getById(id);
+    }
 }
