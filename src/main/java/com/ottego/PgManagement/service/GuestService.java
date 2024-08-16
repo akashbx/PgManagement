@@ -63,14 +63,6 @@ public class GuestService {
         guest.setState(state);
         guest.setZip(zip);
 
-        Bed bed = bedRepository.findByName(bedName);
-        if (bed != null) {
-//            guest.getBeds().clear();
-//            guest.getBeds().add(bed);
-        } else {
-            return "Bed not found";
-        }
-
         guestRepository.save(guest);
         return "Guest updated successfully";
     }
@@ -80,11 +72,5 @@ public class GuestService {
             return null;
         }
         return GuestWithStays.from(guest);
-    }
-
-
-    public Guest getGuestById(Integer guestId) {
-
-        return guestRepository.findById(guestId).orElse(null);
     }
 }

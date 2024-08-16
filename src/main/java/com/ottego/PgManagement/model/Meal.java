@@ -23,7 +23,7 @@ public class Meal {
     private Integer id;
 
     @Enumerated(EnumType.STRING)
-    private MealType Type;
+    private MealType type;
 
     @ManyToOne
     @JoinColumn(columnDefinition = "pg_id")
