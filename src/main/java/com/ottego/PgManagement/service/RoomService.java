@@ -31,8 +31,8 @@ public class RoomService {
         roomRepository.save(room);
     }
 
-    public List<RoomDto> getRooms() {
-        return roomRepository.findAll().stream().map(RoomDto::from).toList();
+    public List<RoomWithStay> getRooms() {
+        return roomRepository.findAll().stream().map(RoomWithStay::from).toList();
     }
 
     public void save(RoomRequest request) {

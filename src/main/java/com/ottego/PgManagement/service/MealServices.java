@@ -1,6 +1,7 @@
 package com.ottego.PgManagement.service;
 
 import com.ottego.PgManagement.Dto.MealDetail;
+import com.ottego.PgManagement.Dto.MealDto;
 import com.ottego.PgManagement.Request.MealRequest;
 import com.ottego.PgManagement.model.Enum.MealType;
 import com.ottego.PgManagement.model.Meal;
@@ -21,8 +22,14 @@ public class MealServices {
     @Autowired
     private PgRepository pgRepository;
 
-    public List<MealDetail> getMeal() {
-        return mealRepository.findAll().stream().map(MealDetail::from).toList();
+    public List<MealDto> getMeal() {
+        return mealRepository.findAll().stream().map(MealDto::from).toList();
+    }
+
+    public MealDetail getMealDetail(Integer id) {
+        Meal meal = mealRepository.findById(id).get();
+        MealDetail mealDetail = MealDetail.from(meal);
+        return mealDetail;
     }
 
     public void save(MealRequest model){

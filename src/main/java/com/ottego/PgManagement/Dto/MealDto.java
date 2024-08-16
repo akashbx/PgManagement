@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -14,10 +16,12 @@ import lombok.Setter;
 public class MealDto {
     private Integer id;
     private MealType Type;
+    private List<DishDto> dishes;
     public static MealDto from(Meal meal) {
         MealDto mealD = new MealDto();
         mealD.setId(meal.getId());
         mealD.setType(meal.getType());
+        mealD.setDishes(meal.getDishes().stream().map(DishDto::from).toList());
         return mealD;
     }
 }

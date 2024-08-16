@@ -18,7 +18,8 @@ public class AddressDto {
     private String city;
     private String state;
     private String zip;
-    private Integer pg_id;
+    private Long latitude;
+    private Long longitude;
 
     public static AddressDto from(Address address) {
         AddressDto addressDto = new AddressDto();
@@ -29,7 +30,8 @@ public class AddressDto {
         addressDto.setCity(address.getCity());
         addressDto.setState(address.getState());
         addressDto.setZip(address.getZip());
-        addressDto.setPg_id(address.getPg().getId());
+        addressDto.setLatitude(address.getLatitude());
+        addressDto.setLongitude(address.getLongitude());
         return addressDto;
     }
 }

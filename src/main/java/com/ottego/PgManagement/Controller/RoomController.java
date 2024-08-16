@@ -20,7 +20,7 @@ public class RoomController {
     private RoomService roomService;
 
     @GetMapping
-    public List<RoomDto> getAllRooms() {
+    public List<RoomWithStay> getAllRooms() {
         return roomService.getRooms();
     }
 

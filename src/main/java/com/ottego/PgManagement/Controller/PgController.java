@@ -25,6 +25,10 @@ public class PgController {
     public List<PgDto> getAllPgs() {
         return pgService.getAllPgs();
     }
+//    @GetMapping()
+//    public List<PgDto> getPgsResult() {
+//        return pgService.getAllPgs();
+//    }
     @GetMapping("all")
     public List<PgWithRooms> getAllPgsWithRooms() {
         return pgService.getAllPgsWithRooms();
