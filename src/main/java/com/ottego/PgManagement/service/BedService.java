@@ -5,6 +5,7 @@ import com.ottego.PgManagement.Dto.BedWithStay;
 import com.ottego.PgManagement.Request.BedRequest;
 import com.ottego.PgManagement.model.Bed;
 import com.ottego.PgManagement.model.Enum.BedStatus;
+import com.ottego.PgManagement.model.Room;
 import com.ottego.PgManagement.repository.BedRepository;
 import com.ottego.PgManagement.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,9 @@ public class BedService {
         bed.setName(request.getName());
         bed.setStatus(BedStatus.valueOf(request.getStatus()));
         bed.setPrice(request.getPrice());
-        roomRepository.findById(request.getRoomId()).ifPresent(bed::setRoom);
+        request.getRoom_id();
+        Room room = roomRepository.findById(request.getRoom_id()).get();
+        bed.setRoom(room);
         bedRepository.save(bed);
     }
     public void save(BedRequest request) {
@@ -32,7 +35,9 @@ public class BedService {
         bed.setName(request.getName());
         bed.setStatus(BedStatus.valueOf(request.getStatus()));
         bed.setPrice(request.getPrice());
-        roomRepository.findById(request.getRoomId()).ifPresent(bed::setRoom);
+        request.getRoom_id();
+        Room room = roomRepository.findById(request.getRoom_id()).get();
+        bed.setRoom(room);
         bedRepository.save(bed);
     }
 

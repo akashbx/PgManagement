@@ -14,5 +14,5 @@ public class BedRequest {
     private String name;
     private String status;
     private String price;
-    private Integer roomId;
+    private Integer room_id;
 }
