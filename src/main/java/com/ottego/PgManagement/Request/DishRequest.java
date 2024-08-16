@@ -14,7 +14,6 @@ public class DishRequest {
     private String Cuisine;
     private String name;
     private String description;
-    private String price;
-    private Integer meal_id;
+    private Integer price;
 
 }

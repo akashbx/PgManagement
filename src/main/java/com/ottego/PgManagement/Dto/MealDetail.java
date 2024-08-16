@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -22,8 +24,8 @@ public class MealDetail {
         MealDetail mealDetail = new MealDetail();
         mealDetail.setId(meal.getId());
         mealDetail.setType(meal.getType());
-        mealDetail.setDiners(meal.getDiners().stream().map(DinerDto::from).toList());
         mealDetail.setDishes(meal.getDishes().stream().map(DishDto::from).toList());
+        mealDetail.setDiners(meal.getDiners().stream().map(DinerDto::from).toList());
         return mealDetail;
     }
 }

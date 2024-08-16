@@ -12,7 +12,7 @@ import lombok.Setter;
 public class DinerRequest {
     private Integer id;
     private String item;
-    private String price;
+    private Integer price;
     private Integer stayId;
     private Integer mealId;
 }

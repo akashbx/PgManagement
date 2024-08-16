@@ -19,7 +19,7 @@ public class Diner {
 
     private String item;
 
-    private String price;
+    private Integer price;
 
 
     @ManyToOne

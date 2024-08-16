@@ -15,8 +15,13 @@ public class DishController {
     private DishService dishService;
 
     @GetMapping
-    public List<DishDto> getDiners() {
+    public List<DishDto> getDish() {
         return dishService.getDish();
+    }
+
+    @GetMapping("/{id}")
+    public DishDto getDishById(@PathVariable Integer id) {
+        return dishService.getDishById(id);
     }
 
     @PostMapping

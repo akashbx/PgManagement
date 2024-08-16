@@ -22,13 +22,16 @@ public class DishService {
     public List<DishDto> getDish() {
         return dishRepository.findAll().stream().map(DishDto::from).toList();
     }
+
+    public DishDto getDishById(Integer id) {
+        return DishDto.from(dishRepository.findById(id).get());
+    }
     public void save(DishRequest model) {
         Dish dish = new Dish();
         dish.setCuisine(Cuisine.valueOf(model.getCuisine()));
         dish.setName(model.getName());
         dish.setDescription(model.getDescription());
         dish.setPrice(model.getPrice());
-        dish.setMeal(mealRepository.findById(model.getMeal_id()).get());
         dishRepository.save(dish);
     }
     public void update(DishRequest request) {
@@ -37,7 +40,6 @@ public class DishService {
         dish.setName(request.getName());
         dish.setDescription(request.getDescription());
         dish.setPrice(request.getPrice());
-        dish.setMeal(mealRepository.findById(request.getMeal_id()).get());
         dishRepository.save(dish);
     }
 }

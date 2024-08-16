@@ -9,6 +9,8 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -28,8 +30,12 @@ public class Meal {
     private Pg pg;
 
 
-    @OneToMany(mappedBy = "meal", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Dish> dishes = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "meals_dishes",
+            joinColumns = @JoinColumn(name = "meal_id"),
+            inverseJoinColumns = @JoinColumn(name = "dish_id"))
+    List<Dish> dishes;
 
     @OneToMany(mappedBy = "meal", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Diner> diners = new ArrayList<>();

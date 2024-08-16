@@ -8,6 +8,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -27,10 +31,9 @@ public class Dish {
 
     private String description;
 
-    @NotBlank
-    private String price;
 
-    @ManyToOne
-    @JoinColumn(columnDefinition = "meal_id")
-    private Meal meal;
+    private Integer price;
+
+    @ManyToMany(mappedBy = "dishes")
+    List<Meal> meals;
 }

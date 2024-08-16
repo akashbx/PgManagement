@@ -13,7 +13,7 @@ import lombok.Setter;
 public class DinerDto {
     private Integer id;
     private String item;
-    private String price;
+    private Integer price;
 
     public static DinerDto from(Diner diner) {
         DinerDto dinerDto = new DinerDto();

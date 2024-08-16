@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -12,5 +14,6 @@ import lombok.Setter;
 public class MealRequest {
     private Integer id;
     private String type;
-    private Integer pgId;
+    private Integer pg_id;
+    private List<Integer> dish_ids;
 }
