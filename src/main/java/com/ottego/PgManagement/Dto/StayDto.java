@@ -14,6 +14,7 @@ public class StayDto {
     private Integer id;
     private String checkIn;
     private String checkOut;
+    private GuestDto guest;
 
 
     public static StayDto from(Stay stay) {
@@ -21,6 +22,7 @@ public class StayDto {
         stayDto.setId(stay.getId());
         stayDto.setCheckIn(stay.getCheckIn());
         stayDto.setCheckOut(stay.getCheckOut());
+        stayDto.setGuest(GuestDto.from(stay.getGuest()));
         return stayDto;
     }
 }

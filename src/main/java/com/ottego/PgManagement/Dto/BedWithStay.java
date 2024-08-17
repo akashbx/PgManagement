@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -18,7 +19,8 @@ public class BedWithStay {
     private String name;
     private BedStatus status;
     private String price;
-    private List<StayDetails> stays;
+    private List<StayDetails> stays = new ArrayList<>();
+    private StayDetails stay;
 
     public static BedWithStay from(Bed bed) {
         BedWithStay bedWithStay = new BedWithStay();
@@ -26,7 +28,10 @@ public class BedWithStay {
         bedWithStay.setName(bed.getName());
         bedWithStay.setStatus(bed.getStatus());
         bedWithStay.setPrice(bed.getPrice());
-        bedWithStay.setStays(bed.getStays().stream().map(StayDetails::from).toList());
+//        bedWithStay.setStays(bed.getStays().stream().map(StayDetails::from).toList());
+        if (bed.getStays()!=null && !bed.getStays().isEmpty()) {
+            bedWithStay.setStay(StayDetails.from(bed.getStays().getFirst()));
+        }
         return bedWithStay;
     }
 }

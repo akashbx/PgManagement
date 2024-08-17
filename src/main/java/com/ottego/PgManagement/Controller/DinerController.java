@@ -19,6 +19,12 @@ public class DinerController {
         return dinerService.getDiner();
     }
 
+    @GetMapping("/{id}")
+    public DinerDto getDinerById(@PathVariable Integer id) {
+        return dinerService.getDinerById(id);
+    }
+
+
     @PostMapping
     public String addDiner(@RequestBody DinerRequest request) {
         dinerService.save(request);

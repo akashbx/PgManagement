@@ -17,15 +17,21 @@ import java.util.List;
 public class MealDetail {
     private Integer id;
     private MealType Type;
+    private String created_at;
+    private String served_at;
     private List<DishDto> dishes;
     private List<DinerDto> diners;
+    private PgDto pg;
 
     public static MealDetail from(Meal meal) {
         MealDetail mealDetail = new MealDetail();
         mealDetail.setId(meal.getId());
         mealDetail.setType(meal.getType());
+        mealDetail.setCreated_at(meal.getCreated_at());
+        mealDetail.setServed_at(meal.getServed_at());
         mealDetail.setDishes(meal.getDishes().stream().map(DishDto::from).toList());
         mealDetail.setDiners(meal.getDiners().stream().map(DinerDto::from).toList());
+        mealDetail.setPg(PgDto.from(meal.getPg()));
         return mealDetail;
     }
 }

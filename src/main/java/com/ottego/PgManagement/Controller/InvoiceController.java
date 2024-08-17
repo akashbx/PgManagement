@@ -19,8 +19,8 @@ public class InvoiceController {
     private InvoiceServices invoiceServices;
 
     @GetMapping
-    public List<InvoiceWithPayment> getInvoice() {
-        return invoiceServices.getInvoices();
+    public List<InvoiceWithPayment> getInvoice(@RequestParam(required = false) Integer stay_id) {
+        return invoiceServices.getInvoices(stay_id);
     }
 
     @PostMapping

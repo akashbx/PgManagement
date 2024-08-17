@@ -8,9 +8,12 @@ import com.ottego.PgManagement.Dto.RoomWithStay;
 import com.ottego.PgManagement.Request.RoomRequest;
 import com.ottego.PgManagement.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/room")
@@ -20,8 +23,8 @@ public class RoomController {
     private RoomService roomService;
 
     @GetMapping
-    public List<RoomWithStay> getAllRooms() {
-        return roomService.getRooms();
+    public List<RoomWithStay> getAllRooms(@RequestParam(required = false) Integer pg_id) {
+        return roomService.getRooms(pg_id);
     }
 
     @PostMapping

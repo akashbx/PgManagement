@@ -13,6 +13,6 @@ public class DinerRequest {
     private Integer id;
     private String item;
     private Integer price;
-    private Integer stayId;
-    private Integer mealId;
+    private Integer stay_id;
+    private Integer meal_id;
 }

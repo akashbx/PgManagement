@@ -2,10 +2,12 @@ package com.ottego.PgManagement.model;
 
 import com.ottego.PgManagement.model.Enum.MealType;
 import jakarta.persistence.*;
+import jdk.jfr.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +26,12 @@ public class Meal {
 
     @Enumerated(EnumType.STRING)
     private MealType type;
+
+    @CreationTimestamp
+    private String created_at;
+
+    @Timestamp
+    private String served_at;
 
     @ManyToOne
     @JoinColumn(columnDefinition = "pg_id")

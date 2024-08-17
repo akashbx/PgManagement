@@ -16,8 +16,8 @@ public class MealController {
     private MealServices mealService;
 
     @GetMapping
-    public List<MealDto> getMeals() {
-        return mealService.getMeal();
+    public List<MealDto> getMeals(@RequestParam(required = false) Integer pg_id) {
+        return mealService.getMeals(pg_id);
     }
 
     @GetMapping("/{id}")

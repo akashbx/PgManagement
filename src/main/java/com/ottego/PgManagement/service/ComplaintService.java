@@ -22,8 +22,12 @@ public class ComplaintService {
     @Autowired
     private StayRepository stayRepository;
 
-   public List<ComplaintDto> getComplaints() {
-       return complaintRepository.findAll().stream().map(ComplaintDto::from).toList();
+   public List<ComplaintDto> getComplaints(Integer stay_id) {
+       if(stay_id!= null && stay_id!= 0) {
+           return complaintRepository.findAllByStay_Id(stay_id).stream().map(ComplaintDto::from).toList();
+       } else {
+           return complaintRepository.findAll().stream().map(ComplaintDto::from).toList();
+       }
    }
 
     public void save(ComplaintRequest model) {

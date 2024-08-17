@@ -16,8 +16,8 @@ public class ComplaintActionController {
     private ComplaintActionService complaintActionService;
 
     @GetMapping
-    public List<ComplaintActionDto> getComplaintAction() {
-        return complaintActionService.getComplaintAction();
+    public List<ComplaintActionDto> getComplaintAction(@RequestParam(required = false) Integer complaint_id) {
+        return complaintActionService.getComplaintAction(complaint_id);
     }
 
     @PutMapping

@@ -25,8 +25,8 @@ public class StayController {
     }
 
     @GetMapping
-    public List<StayDetails> getAllStays() {
-        return stayService.getAllStays();
+    public List<StayDetails> getAllStays(@RequestParam (required = false) Integer bed_id) {
+        return stayService.getAllStays(bed_id);
     }
 
     @PutMapping

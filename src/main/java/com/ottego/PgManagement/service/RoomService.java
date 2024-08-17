@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RoomService {
@@ -27,12 +28,17 @@ public class RoomService {
         room.setFloor(request.getFloor());
         room.setRoomNumber(request.getRoomNumber());
         room.setRoomType(RoomType.valueOf(request.getRoomType()));
-        room.setPg(pgRepository.findById(request.getPg_id()).get());
+        pgRepository.findById(request.getPg_id()).ifPresent(room::setPg);
         roomRepository.save(room);
     }
 
-    public List<RoomWithStay> getRooms() {
-        return roomRepository.findAll().stream().map(RoomWithStay::from).toList();
+    public List<RoomWithStay> getRooms(Integer pg_id) {
+        if (pg_id!=null && pg_id != 0) {
+            return roomRepository.findAllByPg_Id(pg_id).stream().map(RoomWithStay::from).toList();
+        }else {
+            return roomRepository.findAll().stream().map(RoomWithStay::from).toList();
+        }
+
     }
 
     public void save(RoomRequest request) {
@@ -43,6 +49,7 @@ public class RoomService {
         pgRepository.findById(request.getPg_id()).ifPresent(room::setPg);
         roomRepository.save(room);
     }
+
     public long countRoomsInPg(Integer pgId) {
         return roomRepository.countRoomsByPgId(pgId);
     }

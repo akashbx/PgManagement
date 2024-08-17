@@ -58,8 +58,12 @@ public class StayService {
         stayRepository.save(stay);
     }
 
-    public List<StayDetails> getAllStays() {
-        return stayRepository.findAll().stream().map(StayDetails::from).toList();
+    public List<StayDetails> getAllStays(Integer Bed_id) {
+        if (Bed_id != null && Bed_id != 0) {
+            return stayRepository.findAllByBed_Id(Bed_id).stream().map(StayDetails::from).toList();
+        } else {
+            return stayRepository.findAll().stream().map(StayDetails::from).toList();
+        }
     }
 
     public StayDetails getStayById(Integer id) {

@@ -4,6 +4,7 @@ import com.ottego.PgManagement.Dto.*;
 import com.ottego.PgManagement.Request.PgRequest;
 import com.ottego.PgManagement.model.*;
 import com.ottego.PgManagement.repository.AddressRepository;
+import com.ottego.PgManagement.repository.DishRepository;
 import com.ottego.PgManagement.repository.PgRepository;
 import com.ottego.PgManagement.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class PgService  {
 
     @Autowired
     private AddressRepository  addressRepository;
+
+    @Autowired
+    private DishRepository dishRepository;
 
 
 
@@ -61,6 +65,7 @@ public class PgService  {
 
         PgDetails pg = pgRepository.findById(id).map(PgDetails::from).get();
         pg.noOfRooms = roomRepository.countRoomsByPgId(id);
+        pg.setDishes(dishRepository.findAll().stream().map(DishDto::from).toList());
         return pg;
     }
 }

@@ -19,8 +19,12 @@ public class ComplaintActionService {
     private ComplaintActionRepository complaintActionRepository;
     @Autowired
     private ComplaintRepository complaintRepository;
-    public List<ComplaintActionDto> getComplaintAction(){
-        return complaintActionRepository.findAll().stream().map(ComplaintActionDto::from).toList();
+    public List<ComplaintActionDto> getComplaintAction(Integer complaint_id) {
+        if (complaint_id != null && complaint_id != 0) {
+            return complaintActionRepository.findAllByComplaint_Id(complaint_id).stream().map(ComplaintActionDto::from).toList();
+        } else {
+            return complaintActionRepository.findAll().stream().map(ComplaintActionDto::from).toList();
+        }
     }
     public void save(ComplaintActionRequest model){
         ComplaintAction complaintAction = new ComplaintAction();

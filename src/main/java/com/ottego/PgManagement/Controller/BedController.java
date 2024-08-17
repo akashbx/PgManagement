@@ -15,9 +15,10 @@ public class BedController {
     @Autowired
     private BedService bedService;
 
+
     @GetMapping
-    public List<BedWithStay> getAllBeds() {
-        return bedService.getAllBeds();
+    public List<BedWithStay> getBeds (@RequestParam (required = false) Integer room_id) {
+        return bedService.getBeds(room_id);
     }
 
     @PostMapping

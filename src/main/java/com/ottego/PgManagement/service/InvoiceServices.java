@@ -22,8 +22,13 @@ public class InvoiceServices {
     private InvoiceRepository invoiceRepository;
 
 
-    public List<InvoiceWithPayment> getInvoices() {
-        return invoiceRepository.findAll().stream().map(InvoiceWithPayment::from).toList();
+    public List<InvoiceWithPayment> getInvoices(Integer stay_id) {
+        if(stay_id!= null && stay_id != 0) {
+            return invoiceRepository.findAllByStay_Id(stay_id).stream().map(InvoiceWithPayment::from).toList();
+        }
+        else {
+            return invoiceRepository.findAll().stream().map(InvoiceWithPayment::from).toList();
+        }
     }
     public InvoiceDetail getInvoiceById(Integer id) {
         return InvoiceDetail.from(invoiceRepository.findById(id).get());

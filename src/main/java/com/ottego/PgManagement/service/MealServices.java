@@ -2,6 +2,8 @@ package com.ottego.PgManagement.service;
 
 import com.ottego.PgManagement.Dto.MealDetail;
 import com.ottego.PgManagement.Dto.MealDto;
+import com.ottego.PgManagement.Dto.PgDto;
+import com.ottego.PgManagement.Dto.RoomWithStay;
 import com.ottego.PgManagement.Request.MealRequest;
 import com.ottego.PgManagement.model.Dish;
 import com.ottego.PgManagement.model.Enum.MealType;
@@ -36,10 +38,20 @@ public class MealServices {
         return mealDetail;
     }
 
+    public List<MealDto> getMeals(Integer pg_id) {
+        if (pg_id!=null && pg_id != 0) {
+            return mealRepository.findAllByPg_Id(pg_id).stream().map(MealDto::from).toList();
+        }else {
+            return mealRepository.findAll().stream().map(MealDto::from).toList();
+        }
+    }
+
     public void save(MealRequest model){
         Meal meal = new Meal();
 
         meal.setType(MealType.valueOf(model.getType()));
+        meal.setCreated_at(model.getCreated_at());
+        meal.setServed_at(model.getServed_at());
         model.getPg_id();
         model.getDish_ids();
 
@@ -54,6 +66,8 @@ public class MealServices {
         Meal meal = mealRepository.findById(request.getId()).get();
 
         meal.setType(MealType.valueOf(request.getType()));
+        meal.setCreated_at(request.getCreated_at());
+        meal.setServed_at(request.getServed_at());
         request.getPg_id();
         request.getDish_ids();
         Pg pg = pgRepository.findById(request.getPg_id()).get();

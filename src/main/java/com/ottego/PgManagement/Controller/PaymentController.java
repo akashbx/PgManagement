@@ -16,8 +16,8 @@ public class PaymentController {
     private PaymentServices paymentServices;
 
     @GetMapping
-    public List<PaymentDto> getPayments() {
-        return paymentServices.getPayments();
+    public List<PaymentDto> getPayments(@RequestParam(required = false) Integer stay_id) {
+        return paymentServices.getPayments(stay_id);
     }
 
     @PostMapping

@@ -41,14 +41,19 @@ public class BedService {
         bedRepository.save(bed);
     }
 
-    public List<BedWithStay> getAllBeds() {
-        return bedRepository.findAll().stream().map(BedWithStay::from).toList();
-    }
 
     public BedWithStay getBedById(Integer Id) {
         return BedWithStay.from(bedRepository.findById(Id).get());
     }
     public BedDetail getBedDetailsById(Integer Id) {
         return BedDetail.from(bedRepository.findById(Id).get());
+    }
+
+    public List<BedWithStay> getBeds(Integer room_id) {
+        if (room_id != null && room_id != 0) {
+            return bedRepository.findBedByRoom_id(room_id).stream().map(BedWithStay::from).toList();
+        } else {
+            return bedRepository.findAll().stream().map(BedWithStay::from).toList();
+        }
     }
 }

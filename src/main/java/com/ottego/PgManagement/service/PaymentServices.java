@@ -20,8 +20,13 @@ public class PaymentServices {
     @Autowired
     private InvoiceRepository invoiceRepository;
 
-    public List<PaymentDto> getPayments() {
-        return paymentRepository.findAll().stream().map(PaymentDto::from).toList();
+    public List<PaymentDto> getPayments(Integer invoice_id) {
+        if (invoice_id != null && invoice_id != 0) {
+            return paymentRepository.findAllByInvoice_Id(invoice_id).stream().map(PaymentDto::from).toList();
+        }
+         else {
+            return paymentRepository.findAll().stream().map(PaymentDto::from).toList();
+        }
     }
     public PaymentDetail getPaymentById(Integer id) {
         return PaymentDetail.from(paymentRepository.findById(id).get());

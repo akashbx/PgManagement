@@ -25,12 +25,16 @@ public class DinerService {
         return dinerRepository.findAll().stream().map(DinerDto::from).toList();
     }
 
+    public DinerDto getDinerById(Integer id) {
+        return DinerDto.from(dinerRepository.findById(id).get());
+    }
+
     public void save(DinerRequest model) {
         Diner diner = new Diner();
         diner.setItem(model.getItem());
         diner.setPrice(model.getPrice());
-        diner.setMeal(mealRepository.findById(model.getMealId()).get());
-        diner.setStay(stayRepository.findById(model.getStayId()).get());
+        diner.setMeal(mealRepository.findById(model.getMeal_id()).get());
+        diner.setStay(stayRepository.findById(model.getStay_id()).get());
         dinerRepository.save(diner);
     }
 
@@ -38,8 +42,8 @@ public class DinerService {
         Diner diner = dinerRepository.findById(request.getId()).get();
         diner.setItem(request.getItem());
         diner.setPrice(request.getPrice());
-        diner.setMeal(mealRepository.findById(request.getMealId()).get());
-        diner.setStay(stayRepository.findById(request.getStayId()).get());
+        diner.setMeal(mealRepository.findById(request.getMeal_id()).get());
+        diner.setStay(stayRepository.findById(request.getStay_id()).get());
         dinerRepository.save(diner);
     }
 
