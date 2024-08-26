@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface MealRepository extends JpaRepository<Meal, Integer> {
     List<Meal> findAllByPg_Id(Integer pgId);
+    Meal findTopByPg_IdOrderByIdDesc(Integer pgId);
 }

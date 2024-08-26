@@ -18,6 +18,7 @@ public class GuestWithStays {
     private String email;
     private String password;
     private String dob;
+    private String profession;
     private String phone;
     private String address;
     private String city;
@@ -32,6 +33,7 @@ public class GuestWithStays {
         guestWithStays.setEmail(guest.getEmail());
         guestWithStays.setPassword(guest.getPassword());
         guestWithStays.setDob(guest.getDob());
+        guestWithStays.setProfession(guest.getProfession());
         guestWithStays.setPhone(guest.getPhone());
         guestWithStays.setAddress(guest.getAddress());
         guestWithStays.setCity(guest.getCity());

@@ -9,17 +9,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class GuestRequest {
+public class OwnerRequest {
     private Integer id;
-    private String email;
     private String name;
+    private String email;
     private String phone;
-    private String dob;
-    private String profession;
-    private String password;
-    private String address;
-    private String state;
-    private String zip;
-    private String city;
-    private Integer owner_id;
 }

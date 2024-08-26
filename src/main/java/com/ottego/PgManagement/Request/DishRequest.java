@@ -15,5 +15,6 @@ public class DishRequest {
     private String name;
     private String description;
     private Integer price;
+    private Integer pg_id;
 
 }

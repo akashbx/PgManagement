@@ -16,47 +16,29 @@ public class GuestController {
     private GuestService guestService;
 
     @PostMapping
-    public String addGuest(@RequestBody GuestRequest guestRequest) {
-        return guestService.addGuest(
-                guestRequest.getId(),
-                guestRequest.getEmail(),
-                guestRequest.getBedName(),
-                guestRequest.getName(),
-                guestRequest.getPhone(),
-                guestRequest.getDob(),
-                guestRequest.getPassword(),
-                guestRequest.getAddress(),
-                guestRequest.getState(),
-                guestRequest.getZip(),
-                guestRequest.getCity()
-        );
+    public String addGuest(@RequestBody GuestRequest guest) {
+        guestService.addGuest(guest);
+        return "Guest added successfully";
     }
 
     @GetMapping
-    public List<GuestDto> getGuest() {
-        return guestService.getGuest();
+    public List<GuestDto> getGuest(@RequestParam (required = false) Integer owner_id) {
+        return guestService.getGuest(owner_id);
     }
 
     @PutMapping
-    public String updateGuest(@RequestBody GuestRequest guestRequest) {
-        return guestService.updateGuest(
-                Integer.valueOf(guestRequest.getId()),
-                guestRequest.getEmail(),
-                guestRequest.getBedName(),
-                guestRequest.getName(),
-                guestRequest.getPhone(),
-                guestRequest.getDob(),
-                guestRequest.getPassword(),
-                guestRequest.getAddress(),
-                guestRequest.getState(),
-                guestRequest.getZip(),
-                guestRequest.getCity()
-        );
+    public String updateGuest(@RequestBody GuestRequest guest) {
+        guestService.updateGuest(guest);
+        return "Guest updated successfully";
     }
 
     @GetMapping("/{id}")
     public GuestWithStays getGuestById(@PathVariable("id") Integer guestId) {
         return guestService.getGuestWithStays(guestId);
+    }
+    @GetMapping("/search")
+    public List<GuestDto> searchGuest(@RequestParam(required = false) String name) {
+        return guestService.findGuest(name);
     }
 
 }

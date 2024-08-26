@@ -1,6 +1,6 @@
 package com.ottego.PgManagement.Controller;
 
-import com.ottego.PgManagement.Dto.BedDetail;
+import com.ottego.PgManagement.Dto.BedDetails;
 import com.ottego.PgManagement.Dto.BedWithStay;
 import com.ottego.PgManagement.Request.BedRequest;
 import com.ottego.PgManagement.service.BedService;
@@ -17,7 +17,7 @@ public class BedController {
 
 
     @GetMapping
-    public List<BedWithStay> getBeds (@RequestParam (required = false) Integer room_id) {
+    public List<BedDetails> getBeds (@RequestParam (required = false) Integer room_id) {
         return bedService.getBeds(room_id);
     }
 
@@ -33,11 +33,7 @@ public class BedController {
         return "Bed added successfully";
     }
     @GetMapping("/{Id}")
-    public BedWithStay getBedById(@PathVariable Integer Id) {
+    public BedDetails getBedById(@PathVariable Integer Id) {
         return bedService.getBedById(Id);
-    }
-    @GetMapping("/count/{Id}")
-    public BedDetail getBedDetail(@PathVariable Integer Id) {
-        return bedService.getBedDetailsById(Id);
     }
 }

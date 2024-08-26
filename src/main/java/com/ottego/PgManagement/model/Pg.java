@@ -38,6 +38,10 @@ public class Pg {
     @NotBlank
     private String caretaker;
 
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private Owner owner;
+
     @OneToMany(mappedBy = "pg", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Room> rooms = new ArrayList<>();
 
@@ -47,5 +51,9 @@ public class Pg {
 
     @OneToMany(mappedBy = "pg", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Facility> facility = new ArrayList<>();
+
+    @OneToMany(mappedBy = "pg", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Dish> dishes = new ArrayList<>();
+
 
 }

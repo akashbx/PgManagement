@@ -1,11 +1,13 @@
 package com.ottego.PgManagement.model;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jdk.jfr.Timestamp;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +33,8 @@ public class Stay {
     @CreationTimestamp
     private String checkIn;
 
-    @UpdateTimestamp
+    @Nullable
+
     private String checkOut;
 
     @OneToMany(mappedBy = "stay", cascade = CascadeType.ALL, orphanRemoval = true)

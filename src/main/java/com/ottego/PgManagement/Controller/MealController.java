@@ -24,6 +24,10 @@ public class MealController {
     public MealDetail getMealDetail(@PathVariable Integer id) {
         return mealService.getMealDetail(id);
     }
+    @GetMapping("/latest")
+    public MealDetail getLastMealDetail(@RequestParam Integer pg_id) {
+        return mealService.getLatestMeal(pg_id);
+    }
 
     @PostMapping
     public String addMeal(@RequestBody MealRequest request) {

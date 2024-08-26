@@ -46,17 +46,23 @@ public class StayService {
     }
 
     public void update(StayRequest request) {
-        Stay stay = stayRepository.findById(request.getId()).get();
+        Stay stay = stayRepository.findById(request.getId())
+                .orElseThrow(() -> new IllegalArgumentException("Stay not found with id: " + request.getId()));
+
+        Bed bed = bedRepository.findById(request.getBed_id())
+                .orElseThrow(() -> new IllegalArgumentException("Bed not found with id: " + request.getBed_id()));
+
+        Guest guest = guestRepository.findById(request.getGuest_id())
+                .orElseThrow(() -> new IllegalArgumentException("Guest not found with id: " + request.getGuest_id()));
+
         stay.setCheckIn(request.getCheckIn());
         stay.setCheckOut(request.getCheckOut());
-        request.getBed_id();
-        request.getGuest_id();
-        Bed bed = bedRepository.findById(request.getBed_id()).get();
-        Guest guest = guestRepository.findById(request.getGuest_id()).get();
         stay.setBed(bed);
         stay.setGuest(guest);
+
         stayRepository.save(stay);
     }
+
 
     public List<StayDetails> getAllStays(Integer Bed_id) {
         if (Bed_id != null && Bed_id != 0) {

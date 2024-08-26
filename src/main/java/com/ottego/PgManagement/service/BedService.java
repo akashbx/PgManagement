@@ -1,6 +1,6 @@
 package com.ottego.PgManagement.service;
 
-import com.ottego.PgManagement.Dto.BedDetail;
+import com.ottego.PgManagement.Dto.BedDetails;
 import com.ottego.PgManagement.Dto.BedWithStay;
 import com.ottego.PgManagement.Request.BedRequest;
 import com.ottego.PgManagement.model.Bed;
@@ -42,18 +42,19 @@ public class BedService {
     }
 
 
-    public BedWithStay getBedById(Integer Id) {
-        return BedWithStay.from(bedRepository.findById(Id).get());
-    }
-    public BedDetail getBedDetailsById(Integer Id) {
-        return BedDetail.from(bedRepository.findById(Id).get());
+    public BedDetails getBedById(Integer Id) {
+        return BedDetails.from(bedRepository.findById(Id).get());
     }
 
-    public List<BedWithStay> getBeds(Integer room_id) {
+    public BedWithStay getBedDetailsById(Integer Id) {
+        return BedWithStay.from(bedRepository.findById(Id).get());
+    }
+
+    public List<BedDetails> getBeds(Integer room_id) {
         if (room_id != null && room_id != 0) {
-            return bedRepository.findBedByRoom_id(room_id).stream().map(BedWithStay::from).toList();
+            return bedRepository.findBedByRoom_id(room_id).stream().map(BedDetails::from).toList();
         } else {
-            return bedRepository.findAll().stream().map(BedWithStay::from).toList();
+            return bedRepository.findAll().stream().map(BedDetails::from).toList();
         }
     }
 }

@@ -36,4 +36,8 @@ public class Dish {
 
     @ManyToMany(mappedBy = "dishes")
     List<Meal> meals;
+
+    @ManyToOne
+    @JoinColumn(name = "pg_id")
+    private Pg pg;
 }

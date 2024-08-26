@@ -22,8 +22,8 @@ public class PgController {
 
 
     @GetMapping()
-    public List<PgDto> getAllPgs() {
-        return pgService.getAllPgs();
+    public List<PgDto> getAllPgs(@RequestParam (required = false)  Integer owner_id) {
+        return pgService.getAllPgs(owner_id);
     }
 //    @GetMapping()
 //    public List<PgDto> getPgsResult() {

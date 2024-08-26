@@ -7,5 +7,6 @@ import java.util.Collection;
 import java.util.List;
 
 public interface ComplaintRepository extends JpaRepository<Complaint, Integer> {
+
     List<Complaint> findAllByStay_Id(Integer stayId);
 }

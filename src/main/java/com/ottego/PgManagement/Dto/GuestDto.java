@@ -16,6 +16,7 @@ public class GuestDto {
     private String email;
     private String password;
     private String dob;
+    private String profession;
     private String phone;
     private String address;
     private String city;
@@ -31,6 +32,7 @@ public class GuestDto {
         guestDto.setEmail(guest.getEmail());
         guestDto.setPassword(guest.getPassword());
         guestDto.setDob(guest.getDob());
+        guestDto.setProfession(guest.getProfession());
         guestDto.setPhone(guest.getPhone());
         guestDto.setAddress(guest.getAddress());
         guestDto.setCity(guest.getCity());

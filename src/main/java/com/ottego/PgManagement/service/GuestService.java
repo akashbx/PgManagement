@@ -2,12 +2,12 @@ package com.ottego.PgManagement.service;
 
 import com.ottego.PgManagement.Dto.GuestDto;
 import com.ottego.PgManagement.Dto.GuestWithStays;
+import com.ottego.PgManagement.Request.GuestRequest;
 import com.ottego.PgManagement.model.*;
-import com.ottego.PgManagement.repository.BedRepository;
-import com.ottego.PgManagement.repository.GuestRepository;
-import com.ottego.PgManagement.repository.PgRepository;
-import com.ottego.PgManagement.repository.RoomRepository;
+import com.ottego.PgManagement.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,55 +16,48 @@ import java.util.List;
 public class GuestService {
     @Autowired
     private GuestRepository guestRepository;
-    @Autowired
-    private PgRepository pgRepository;
 
     @Autowired
-    private RoomRepository roomRepository;
+    private OwnerRepository ownerRepository;
 
-    @Autowired
-    private BedRepository bedRepository;
-
-    public String addGuest(String id, String email, String bedName, String name, String phone, String dob, String password, String address, String state, String zip, String city) {
+    public void addGuest(GuestRequest model) {
         Guest guest = new Guest();
-        guest.setId(Integer.valueOf(id));
-        guest.setName(name);
-        guest.setEmail(email);
-        guest.setPhone(phone);
-        guest.setPassword(password);
-        guest.setDob(dob);
-        guest.setAddress(address);
-        guest.setCity(city);
-        guest.setState(state);
-        guest.setZip(zip);
-
+        guest.setName(model.getName());
+        guest.setEmail(model.getEmail());
+        guest.setPassword(model.getPassword());
+        guest.setAddress(model.getAddress());
+        guest.setCity(model.getCity());
+        guest.setState(model.getState());
+        guest.setZip(model.getZip());
+        guest.setPhone(model.getPhone());
+        guest.setDob(model.getDob());
+        guest.setProfession(model.getProfession());
+        guest.setOwner(ownerRepository.findById(model.getOwner_id()).get());
         guestRepository.save(guest);
-        return "Guest added successfully";
     }
 
-    public List<GuestDto> getGuest() {
-
-        return guestRepository.findAll().stream().map(GuestDto::from).toList();
-    }
-
-    public String updateGuest(Integer id, String email, String bedName, String name, String phone, String dob, String password, String address, String state, String zip, String city) {
-        Guest guest = guestRepository.findById(id).orElse(null);
-        if (guest == null) {
-            return "Guest not found";
+    public List<GuestDto> getGuest(Integer owner_id) {
+        if (owner_id!= null && owner_id != 0) {
+            return guestRepository.findByOwnerId(owner_id).stream().map(GuestDto::from).toList();
         }
+        else {
+            return guestRepository.findAll().stream().map(GuestDto::from).toList();
+        }
+    }
 
-        guest.setName(name);
-        guest.setEmail(email);
-        guest.setPhone(phone);
-        guest.setPassword(password);
-        guest.setDob(dob);
-        guest.setAddress(address);
-        guest.setCity(city);
-        guest.setState(state);
-        guest.setZip(zip);
-
+    public void updateGuest(GuestRequest request) {
+        Guest guest = guestRepository.findById(request.getId()).get();
+        guest.setName(request.getName());
+        guest.setEmail(request.getEmail());
+        guest.setPassword(request.getPassword());
+        guest.setAddress(request.getAddress());
+        guest.setCity(request.getCity());
+        guest.setState(request.getState());
+        guest.setZip(request.getZip());
+        guest.setPhone(request.getPhone());
+        guest.setDob(request.getDob());
+        guest.setProfession(request.getProfession());
         guestRepository.save(guest);
-        return "Guest updated successfully";
     }
     public GuestWithStays getGuestWithStays(Integer id) {
         Guest guest = guestRepository.findById(id).orElse(null);
@@ -73,4 +66,13 @@ public class GuestService {
         }
         return GuestWithStays.from(guest);
     }
+    public List<GuestDto> findGuest(String name) {
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withMatcher("name", ExampleMatcher.GenericPropertyMatcher::contains)
+                .withIgnorePaths("id", "owner", "stays")
+                .withIgnoreNullValues();
+        return guestRepository.findAll(Example.of(Guest.builder().name(name).build(), matcher)).stream().map(GuestDto::from).toList();
+
+    }
 }
+

@@ -34,5 +34,4 @@ public class Complaint {
 
     @OneToMany(mappedBy = "complaint",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<ComplaintAction> complaintAction = new ArrayList<>();
-
 }

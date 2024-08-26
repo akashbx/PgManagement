@@ -18,5 +18,6 @@ public class PgRequest {
     private Address address;
     private String image;
     private String caretaker;
+    private Integer owner_id;
 
 }

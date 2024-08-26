@@ -68,12 +68,17 @@ public class MealServices {
         meal.setType(MealType.valueOf(request.getType()));
         meal.setCreated_at(request.getCreated_at());
         meal.setServed_at(request.getServed_at());
-        request.getPg_id();
+//        request.getPg_id();
         request.getDish_ids();
-        Pg pg = pgRepository.findById(request.getPg_id()).get();
+//        Pg pg = pgRepository.findById(request.getPg_id()).get();
         List<Dish> dish = dishRepository.findAllById(request.getDish_ids());
-        meal.setPg(pg);
+//        meal.setPg(pg);
         meal.setDishes(dish);
         mealRepository.save(meal);
+    }
+    public MealDetail getLatestMeal(Integer pg_id) {
+        Meal meal = mealRepository.findTopByPg_IdOrderByIdDesc(pg_id);
+        MealDetail mealDetail = MealDetail.from(meal);
+        return mealDetail;
     }
 }

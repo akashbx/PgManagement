@@ -5,8 +5,10 @@ import com.ottego.PgManagement.Dto.DishDto;
 import com.ottego.PgManagement.Request.DishRequest;
 import com.ottego.PgManagement.model.Dish;
 import com.ottego.PgManagement.model.Enum.Cuisine;
+import com.ottego.PgManagement.model.Pg;
 import com.ottego.PgManagement.repository.DishRepository;
 import com.ottego.PgManagement.repository.MealRepository;
+import com.ottego.PgManagement.repository.PgRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,8 @@ public class DishService {
     private DishRepository dishRepository;
     @Autowired
     private MealRepository mealRepository;
+    @Autowired
+    private PgRepository pgRepository;
 
     public List<DishDto> getDish() {
         return dishRepository.findAll().stream().map(DishDto::from).toList();
@@ -32,6 +36,9 @@ public class DishService {
         dish.setName(model.getName());
         dish.setDescription(model.getDescription());
         dish.setPrice(model.getPrice());
+        model.getPg_id();
+        Pg pg = pgRepository.findById(model.getPg_id()).get();
+        dish.setPg(pg);
         dishRepository.save(dish);
     }
     public void update(DishRequest request) {
