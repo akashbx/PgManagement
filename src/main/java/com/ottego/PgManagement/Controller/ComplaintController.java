@@ -16,8 +16,8 @@ public class ComplaintController {
     private ComplaintService complaintService;
 
     @GetMapping
-    public List<ComplaintDto> getComplaint(@RequestParam(required = false)Integer stay_id) {
-        return complaintService.getComplaints(stay_id);
+    public List<ComplaintDto> getComplaint(@RequestParam(required = false)Integer stay_id, @RequestParam(required = false)Integer pg_id) {
+        return complaintService.getComplaints(stay_id, pg_id);
     }
 
     @PostMapping

@@ -1,6 +1,7 @@
 package com.ottego.PgManagement.Controller;
 
 import com.ottego.PgManagement.Dto.StayDetails;
+import com.ottego.PgManagement.Dto.StayDto;
 import com.ottego.PgManagement.Dto.StayWithBedRoom;
 import com.ottego.PgManagement.Request.StayRequest;
 import com.ottego.PgManagement.service.StayService;
@@ -41,6 +42,11 @@ public class StayController {
     @GetMapping("/bed/{id}")
     public StayWithBedRoom StayWithBedRoom(@PathVariable Integer id) {
         return stayService.StayWithBedRoom(id);
+    }
+
+    @GetMapping("pg/{pg_id}")
+    public List<StayDto> getAllStaysByPgId(@PathVariable Integer pg_id) {
+        return stayService.getStayByPg_id(pg_id);
     }
 
 }
