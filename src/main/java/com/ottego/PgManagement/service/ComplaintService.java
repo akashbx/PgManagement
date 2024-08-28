@@ -35,6 +35,7 @@ public class ComplaintService {
 
         complaint.setDescription(model.getDescription());
         complaint.setType(ComplaintType.valueOf(model.getType()));
+        complaint.setClosed(false);
 
         model.getStay_id();
 
@@ -51,6 +52,7 @@ public class ComplaintService {
         Complaint complaint = complaintRepository.findById(request.getId()).get();
         complaint.setDescription(request.getDescription());
         complaint.setType(ComplaintType.valueOf(request.getType()));
+        complaint.setClosed(request.getClosed());
         complaint.setStay(stayRepository.findById(request.getStay_id()).get());
         complaintRepository.save(complaint);
     }

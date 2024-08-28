@@ -8,6 +8,7 @@ import com.ottego.PgManagement.service.StayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -47,6 +48,10 @@ public class StayController {
     @GetMapping("pg/{pg_id}")
     public List<StayDto> getAllStaysByPgId(@PathVariable Integer pg_id) {
         return stayService.getStayByPg_id(pg_id);
+    }
+    @GetMapping("{id}/total")
+    public int getMonthlyMealCost(@PathVariable int id) {
+        return stayService.calculateTotalCost(id);
     }
 
 }

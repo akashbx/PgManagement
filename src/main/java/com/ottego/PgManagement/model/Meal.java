@@ -11,7 +11,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+
 
 @Getter
 @Setter
@@ -47,4 +47,17 @@ public class Meal {
 
     @OneToMany(mappedBy = "meal", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Diner> diners = new ArrayList<>();
+
+    public int calculateMealCost() {
+        switch (this.type) {
+            case BREAKFAST:
+                return 50;
+            case LUNCH:
+            case DINNER:
+                return 60;
+            default:
+                return 0;
+        }
+    }
 }
+

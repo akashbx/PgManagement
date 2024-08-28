@@ -13,5 +13,6 @@ public class ComplaintRequest {
     private Integer id;
     private String description;
     private String type;
+    private Boolean closed;
     private Integer stay_id;
 }

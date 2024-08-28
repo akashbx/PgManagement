@@ -15,6 +15,7 @@ public class ComplaintDetail {
     private Integer id;
     private ComplaintType type;
     private String description;
+    private Boolean closed;
     private StayWithBedRoom stay;
 
     public static ComplaintDetail from(Complaint complaint) {
@@ -22,6 +23,7 @@ public class ComplaintDetail {
         complaintDetail.setId(complaint.getId());
         complaintDetail.setType(complaint.getType());
         complaintDetail.setDescription(complaint.getDescription());
+        complaintDetail.setClosed(complaint.getClosed());
         complaintDetail.setStay(StayWithBedRoom.from(complaint.getStay()));
         return complaintDetail;
     }

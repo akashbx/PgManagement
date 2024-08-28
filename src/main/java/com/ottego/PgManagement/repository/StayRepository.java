@@ -17,4 +17,5 @@ public interface StayRepository extends JpaRepository<Stay, Integer> {
     @Query("SELECT c FROM Stay c WHERE c.bed.room.pg.id = :pg_id")
     List<Stay> findBySuperParentId(@Param("pg_id") Integer pg_id);
 
+
 }

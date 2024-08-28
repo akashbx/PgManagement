@@ -27,6 +27,7 @@ public class Complaint {
 
     @NotBlank
     private String description;
+    private Boolean closed;
 
     @ManyToOne
     @JoinColumn(name = "stay_id")
