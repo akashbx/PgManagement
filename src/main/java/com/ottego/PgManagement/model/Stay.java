@@ -50,7 +50,14 @@ public class Stay {
 
     @OneToMany(mappedBy ="stay", cascade =CascadeType.ALL, orphanRemoval =true)
     private List<Diner> diners = new ArrayList<>();
+
     public int getmonth() {
-        return checkIn.getMonthValue();
+        int month = 0;
+        if (checkIn != null && checkIn.getDayOfMonth() <= 15) {
+            month = 1/2;
+        }else{
+            month = 1;
+        }
+        return month;
     }
 }

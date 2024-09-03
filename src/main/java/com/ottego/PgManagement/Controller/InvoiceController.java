@@ -3,7 +3,6 @@ package com.ottego.PgManagement.Controller;
 import com.ottego.PgManagement.Dto.InvoiceDetail;
 import com.ottego.PgManagement.Dto.InvoiceWithPayment;
 import com.ottego.PgManagement.Request.InvoiceRequest;
-import com.ottego.PgManagement.Request.StayRequest;
 import com.ottego.PgManagement.model.Invoice;
 import com.ottego.PgManagement.service.InvoiceServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,8 +40,8 @@ public class InvoiceController {
         return invoiceServices.getInvoiceById(id);
     }
 
-    @GetMapping("/stay/{stay_id}")
-    public int getInvoiceByStayId(@PathVariable Integer stay_id) {
-        return invoiceServices.calculateRent(stay_id);
+    @PostMapping("/generate")
+    public List<InvoiceDetail> getInvoiceByStayId() {
+        return invoiceServices.generateRentInvoices();
     }
 }

@@ -2,6 +2,7 @@ package com.ottego.PgManagement.service;
 
 import com.ottego.PgManagement.Dto.InvoiceDetail;
 import com.ottego.PgManagement.Dto.InvoiceWithPayment;
+import com.ottego.PgManagement.Dto.StayWithBedRoom;
 import com.ottego.PgManagement.Request.InvoiceRequest;
 import com.ottego.PgManagement.model.Bed;
 import com.ottego.PgManagement.model.Invoice;
@@ -13,6 +14,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,6 +24,7 @@ public class InvoiceServices {
 
     @Autowired
     private InvoiceRepository invoiceRepository;
+
     @Autowired
     private StayService stayService;
 
@@ -40,34 +43,37 @@ public class InvoiceServices {
 
     public void save(InvoiceRequest model) {
         Invoice invoice = new Invoice();
-        invoice.setAmount(model.getAmount());
-
-        model.getStayId();
+//        invoice.setAmount(String.valueOf(calculateRent(model.getStayId())));
 
         Stay stay = stayRepository.findById(model.getStayId()).get();
 
         invoice.setStay(stay);
 
-
         invoiceRepository.save(invoice);
-
-
     }
 
     public void update(InvoiceRequest request) {
         Invoice invoice = invoiceRepository.findById(request.getId()).get();
-        invoice.setAmount(request.getAmount());
+//        invoice.setAmount(String.valueOf(request.getStayId()));
         invoice.setStay(stayRepository.findById(request.getStayId()).get());
         invoiceRepository.save(invoice);
     }
-    public int calculateRent(Integer stay_id) {
-        int rent = 0;
+    public List<InvoiceDetail> generateRentInvoices() {
+        List<Invoice> invoices = new ArrayList<>();
         List<Stay> stays = stayRepository.findAllByCheckOutIsNull();
         for (Stay stay : stays) {
             if (stay.getCheckOut() == null) {
-                rent = stay.getBed().getPrice() + stayService.calculateTotalCost(stay_id);
+                Invoice invoice = new Invoice();
+                invoice.setStay(stay);
+                invoice.setAmount(stay.getBed().getPrice()+"");
+               invoices.add(invoice);
             }
         }
-        return rent;
+        System.out.println(invoices.size());
+
+        return invoiceRepository.saveAll(invoices).stream().map(InvoiceDetail::from).toList();
+    }
+    public List<StayWithBedRoom> getActiveStays() {
+        return stayRepository.findAllByCheckOutIsNull().stream().map(StayWithBedRoom::from).toList();
     }
 }
