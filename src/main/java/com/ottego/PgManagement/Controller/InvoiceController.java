@@ -40,4 +40,9 @@ public class InvoiceController {
     public InvoiceDetail getInvoiceById(@PathVariable Integer id) {
         return invoiceServices.getInvoiceById(id);
     }
+
+    @GetMapping("/stay/{stay_id}")
+    public int getInvoiceByStayId(@PathVariable Integer stay_id) {
+        return invoiceServices.calculateRent(stay_id);
+    }
 }

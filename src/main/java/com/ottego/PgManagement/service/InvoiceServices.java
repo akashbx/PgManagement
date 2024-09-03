@@ -3,23 +3,27 @@ package com.ottego.PgManagement.service;
 import com.ottego.PgManagement.Dto.InvoiceDetail;
 import com.ottego.PgManagement.Dto.InvoiceWithPayment;
 import com.ottego.PgManagement.Request.InvoiceRequest;
+import com.ottego.PgManagement.model.Bed;
 import com.ottego.PgManagement.model.Invoice;
 import com.ottego.PgManagement.model.Stay;
 import com.ottego.PgManagement.repository.InvoiceRepository;
 import com.ottego.PgManagement.repository.StayRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
 public class InvoiceServices {
-
     @Autowired
-    private StayRepository StayRepository;
+    private StayRepository stayRepository;
 
     @Autowired
     private InvoiceRepository invoiceRepository;
+    @Autowired
+    private StayService stayService;
 
 
     public List<InvoiceWithPayment> getInvoices(Integer stay_id) {
@@ -40,7 +44,7 @@ public class InvoiceServices {
 
         model.getStayId();
 
-        Stay stay = StayRepository.findById(model.getStayId()).get();
+        Stay stay = stayRepository.findById(model.getStayId()).get();
 
         invoice.setStay(stay);
 
@@ -53,7 +57,17 @@ public class InvoiceServices {
     public void update(InvoiceRequest request) {
         Invoice invoice = invoiceRepository.findById(request.getId()).get();
         invoice.setAmount(request.getAmount());
-        invoice.setStay(StayRepository.findById(request.getStayId()).get());
+        invoice.setStay(stayRepository.findById(request.getStayId()).get());
         invoiceRepository.save(invoice);
+    }
+    public int calculateRent(Integer stay_id) {
+        int rent = 0;
+        List<Stay> stays = stayRepository.findAllByCheckOutIsNull();
+        for (Stay stay : stays) {
+            if (stay.getCheckOut() == null) {
+                rent = stay.getBed().getPrice() + stayService.calculateTotalCost(stay_id);
+            }
+        }
+        return rent;
     }
 }

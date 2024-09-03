@@ -17,7 +17,7 @@ public class BedDetails {
     private Integer id;
     private String name;
     private BedStatus status;
-    private String price;
+    private Integer price;
     private RoomDto room;
     private StayDto stay;
 

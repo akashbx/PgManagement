@@ -15,7 +15,7 @@ public class BedRoom {
     private Integer id;
     private String name;
     private BedStatus status;
-    private String price;
+    private Integer price;
     private RoomDetails room;
 
     public static BedRoom from(com.ottego.PgManagement.model.Bed bed) {

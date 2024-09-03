@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -14,8 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 public class StayDetails {
     private Integer id;
-    private String checkIn;
-    private String checkOut;
+    private LocalDate checkIn;
+    private LocalDate checkOut;
     private GuestDto guest;
     private BedRoom bed;
     private List<InvoiceWithPayment> invoices;

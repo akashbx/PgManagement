@@ -53,5 +53,8 @@ public class StayController {
     public int getMonthlyMealCost(@PathVariable int id) {
         return stayService.calculateTotalCost(id);
     }
-
+    @GetMapping("/getActiveStays")
+    public List<StayWithBedRoom> getActiveStays() {
+        return stayService.getActiveStays();
+    }
 }

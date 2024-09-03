@@ -18,7 +18,7 @@ public class BedWithStay {
     private Integer id;
     private String name;
     private BedStatus status;
-    private String price;
+    private Integer price;
     private List<StayDetails> stays = new ArrayList<>();
     private StayDetails stay;
 

@@ -31,7 +31,7 @@ public class Bed {
     private BedStatus status;
 
     @NotBlank
-    private String price;
+    private Integer price;
 
     @ManyToOne
     @JoinColumn(name = "room_id")

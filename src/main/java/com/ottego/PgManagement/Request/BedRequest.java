@@ -13,6 +13,6 @@ public class BedRequest {
     private Integer id;
     private String name;
     private String status;
-    private String price;
+    private Integer price;
     private Integer room_id;
 }

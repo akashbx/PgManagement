@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -12,9 +14,9 @@ import lombok.Setter;
 public class StayRequest {
     private Integer id;
 
-    private String checkIn;
+    private LocalDate checkIn;
 
-    private String checkOut;
+    private LocalDate checkOut;
 
     private Integer bed_id;
 

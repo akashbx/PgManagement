@@ -8,17 +8,9 @@ import com.ottego.PgManagement.model.Bed;
 import com.ottego.PgManagement.model.Diner;
 import com.ottego.PgManagement.model.Guest;
 import com.ottego.PgManagement.model.Stay;
-import com.ottego.PgManagement.repository.BedRepository;
-import com.ottego.PgManagement.repository.DinerRepository;
-import com.ottego.PgManagement.repository.GuestRepository;
-import com.ottego.PgManagement.repository.StayRepository;
+import com.ottego.PgManagement.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 
 @Service
@@ -35,6 +27,8 @@ public class StayService {
 
     @Autowired
     private DinerRepository dinerRepository;
+    @Autowired
+    private InvoiceRepository invoiceRepository;
 
     public void save(StayRequest model) {
         Stay stay = new Stay();
@@ -69,7 +63,6 @@ public class StayService {
         stay.setCheckOut(request.getCheckOut());
         stay.setBed(bed);
         stay.setGuest(guest);
-
         stayRepository.save(stay);
     }
 
@@ -103,4 +96,8 @@ public class StayService {
         }
         return totalCost;
     }
+    public List<StayWithBedRoom> getActiveStays() {
+        return stayRepository.findAllByCheckOutIsNull().stream().map(StayWithBedRoom::from).toList();
+    }
+
 }
