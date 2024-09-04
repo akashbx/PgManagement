@@ -65,11 +65,14 @@ public class InvoiceServices {
             if (stay.getCheckOut() == null) {
                 Invoice invoice = new Invoice();
                 invoice.setStay(stay);
-                if(stay.daysStayed()<= 15) {
-                    invoice.setAmount(stay.getBed().getPrice()/30 * stay.daysStayed() + "");
-                } else
-                    invoice.setAmount(stay.getBed().getPrice()+"");
-               invoices.add(invoice);
+                if (stay.daysStayed() < 15) {
+                    invoice.setAmount(stay.getBed().getPrice() / 30 * 15 + "");
+                } else if (stay.daysStayed() >= 15 && stay.daysStayed() < 30) {
+                    invoice.setAmount(stay.getBed().getPrice() / 30 * stay.daysStayed() + "");
+                } else {
+                    invoice.setAmount(stay.getBed().getPrice() + "");
+                }
+                invoices.add(invoice);
             }
         }
         System.out.println(invoices.size());
