@@ -65,15 +65,15 @@ public class InvoiceServices {
             if (stay.getCheckOut() == null) {
                 Invoice invoice = new Invoice();
                 invoice.setStay(stay);
-                invoice.setAmount(stay.getBed().getPrice()+"");
+                if(stay.daysStayed()<= 15) {
+                    invoice.setAmount(stay.getBed().getPrice()/30 * stay.daysStayed() + "");
+                } else
+                    invoice.setAmount(stay.getBed().getPrice()+"");
                invoices.add(invoice);
             }
         }
         System.out.println(invoices.size());
 
         return invoiceRepository.saveAll(invoices).stream().map(InvoiceDetail::from).toList();
-    }
-    public List<StayWithBedRoom> getActiveStays() {
-        return stayRepository.findAllByCheckOutIsNull().stream().map(StayWithBedRoom::from).toList();
     }
 }
