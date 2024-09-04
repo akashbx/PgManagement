@@ -54,7 +54,7 @@ public class InvoiceServices {
 
     public void update(InvoiceRequest request) {
         Invoice invoice = invoiceRepository.findById(request.getId()).get();
-//        invoice.setAmount(String.valueOf(request.getStayId()));
+        invoice.setAmount(request.getAmount());
         invoice.setStay(stayRepository.findById(request.getStayId()).get());
         invoiceRepository.save(invoice);
     }
