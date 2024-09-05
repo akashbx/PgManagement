@@ -14,6 +14,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +45,7 @@ public class InvoiceServices {
 
     public void save(InvoiceRequest model) {
         Invoice invoice = new Invoice();
-//        invoice.setAmount(String.valueOf(calculateRent(model.getStayId())));
+//        invoice.setAmount(String.valueOf(calculateRent(model.getAmount())));
 
         Stay stay = stayRepository.findById(model.getStayId()).get();
 
@@ -58,19 +60,24 @@ public class InvoiceServices {
         invoice.setStay(stayRepository.findById(request.getStayId()).get());
         invoiceRepository.save(invoice);
     }
-    public List<InvoiceDetail> generateRentInvoices() {
+    public List<InvoiceDetail> generateRentInvoices(Month month, Integer year) {
         List<Invoice> invoices = new ArrayList<>();
         List<Stay> stays = stayRepository.findAllByCheckOutIsNull();
         for (Stay stay : stays) {
             if (stay.getCheckOut() == null) {
                 Invoice invoice = new Invoice();
                 invoice.setStay(stay);
-                if (stay.daysStayed() < 15) {
-                    invoice.setAmount(stay.getBed().getPrice() / 30 * 15 + "");
-                } else if (stay.daysStayed() >= 15 && stay.daysStayed() < 30) {
-                    invoice.setAmount(stay.getBed().getPrice() / 30 * stay.daysStayed() + "");
+                invoice.setMonth(month);
+                invoice.setYear(year);
+                int diff = stay.daysStayed(month, year);
+                if (diff< 0){
+                    invoice.setAmount(0);
+                } else if (diff < 15 ) {
+                    invoice.setAmount(stay.getBed().getPrice() / month.maxLength() * 15 );
+                } else if (diff < 30) {
+                    invoice.setAmount(stay.getBed().getPrice() / month.maxLength() * diff);
                 } else {
-                    invoice.setAmount(stay.getBed().getPrice() + "");
+                    invoice.setAmount(stay.getBed().getPrice());
                 }
                 invoices.add(invoice);
             }

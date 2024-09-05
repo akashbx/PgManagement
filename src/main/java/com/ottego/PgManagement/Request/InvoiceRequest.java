@@ -5,12 +5,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.Month;
+import java.time.Year;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class InvoiceRequest {
     private Integer id;
-    private String amount;
+    private Integer amount;
+    private Month month;
+    private Integer year;
     private Integer stayId;
 }

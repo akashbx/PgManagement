@@ -8,6 +8,8 @@ import com.ottego.PgManagement.service.InvoiceServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Month;
+import java.time.Year;
 import java.util.List;
 
 @RestController
@@ -41,7 +43,7 @@ public class InvoiceController {
     }
 
     @PostMapping("/generate")
-    public List<InvoiceDetail> getInvoiceByStayId() {
-        return invoiceServices.generateRentInvoices();
+    public List<InvoiceDetail> getInvoiceByStayId( @RequestParam("month") Month month , @RequestParam("year") Integer year) {
+        return invoiceServices.generateRentInvoices(month, year);
     }
 }

@@ -11,6 +11,8 @@ import org.springframework.data.annotation.CreatedDate;
 
 
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +53,12 @@ public class Stay {
     @OneToMany(mappedBy ="stay", cascade =CascadeType.ALL, orphanRemoval =true)
     private List<Diner> diners = new ArrayList<>();
 
-    public int daysStayed() {
-        return checkIn.getDayOfMonth();
+
+    public int daysStayed(Month month, Integer year) {
+
+        long dayDifference = LocalDate.parse(year + "-"+String.format("%02d", month.getValue())+"-"+month.maxLength()).toEpochDay() - checkIn.toEpochDay() ;
+        System.out.println("differe"+dayDifference);
+        return (int) dayDifference;
+
     }
 }
