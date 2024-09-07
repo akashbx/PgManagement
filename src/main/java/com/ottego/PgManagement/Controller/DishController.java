@@ -15,8 +15,8 @@ public class DishController {
     private DishService dishService;
 
     @GetMapping
-    public List<DishDto> getDish() {
-        return dishService.getDish();
+    public List<DishDto> getDish(@RequestParam(required = false) Integer pg_id) {
+        return dishService.getDish(pg_id);
     }
 
     @GetMapping("/{id}")

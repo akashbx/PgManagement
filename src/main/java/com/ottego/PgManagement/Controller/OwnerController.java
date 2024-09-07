@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/owners")
+@RequestMapping("api/owner")
 public class OwnerController {
     @Autowired
     private OwnerService ownerService;
 
-    @GetMapping("/id")
-    public OwnerDetail getOwnerDetails(@RequestBody Integer id) {
+    @GetMapping("/{id}")
+    public OwnerDetail getOwnerDetails(@PathVariable Integer id) {
        return ownerService.getOwnerDetail(id);
     }
     @GetMapping

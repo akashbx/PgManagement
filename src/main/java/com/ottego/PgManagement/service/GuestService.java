@@ -66,13 +66,22 @@ public class GuestService {
         }
         return GuestWithStays.from(guest);
     }
-    public List<GuestDto> findGuest(String name) {
+    public List<GuestDto> findGuest(String name, String phone,String email) {
         ExampleMatcher matcher = ExampleMatcher.matching()
                 .withMatcher("name", ExampleMatcher.GenericPropertyMatcher::contains)
+                .withMatcher("phone", ExampleMatcher.GenericPropertyMatcher::contains)
+                .withMatcher("email",ExampleMatcher.GenericPropertyMatcher::contains)
                 .withIgnorePaths("id", "owner", "stays")
                 .withIgnoreNullValues();
-        return guestRepository.findAll(Example.of(Guest.builder().name(name).build(), matcher)).stream().map(GuestDto::from).toList();
 
+        Guest guest = Guest.builder()
+                .name(name)
+                .phone(phone)
+                .email(email)
+                .build();
+
+        return guestRepository.findAll(Example.of(guest, matcher)).stream().map(GuestDto::from).toList();
     }
+
 }
 

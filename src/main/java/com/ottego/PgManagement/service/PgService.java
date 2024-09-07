@@ -68,7 +68,7 @@ public class PgService  {
 
         PgDetails pg = pgRepository.findById(id).map(PgDetails::from).get();
         pg.noOfRooms = roomRepository.countRoomsByPgId(id);
-        pg.setDishes(dishRepository.findAll().stream().map(DishDto::from).toList());
+//        pg.setDishes(dishRepository.findAll().stream().map(DishDto::from).toList());
         return pg;
     }
 }

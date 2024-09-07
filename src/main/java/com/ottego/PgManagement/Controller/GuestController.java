@@ -37,8 +37,10 @@ public class GuestController {
         return guestService.getGuestWithStays(guestId);
     }
     @GetMapping("/search")
-    public List<GuestDto> searchGuest(@RequestParam(required = false) String name) {
-        return guestService.findGuest(name);
+    public List<GuestDto> searchGuest(@RequestParam(required = false) String name
+            ,@RequestParam(required = false) String phone
+            ,@RequestParam (required = false) String email) {
+        return guestService.findGuest(name,phone,email);
     }
 
 }

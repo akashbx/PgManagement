@@ -15,9 +15,9 @@ public class OwnerDetail {
     private Integer id;
     private String name;
     private String email;
-    private String phone;
+    private Long phone;
     private List<PgDto> pgs;
-    private List<GuestDto> guests;
+//    private List<GuestDto> guests;
 
     public static OwnerDetail from(Owner owner) {
         OwnerDetail ownerDetail = new OwnerDetail();
@@ -26,7 +26,7 @@ public class OwnerDetail {
         ownerDetail.setEmail(owner.getEmail());
         ownerDetail.setPhone(owner.getPhone());
         ownerDetail.setPgs(owner.getPgs().stream().map(PgDto::from).toList());
-        ownerDetail.setGuests(owner.getGuests().stream().map(GuestDto::from).toList());
+//        ownerDetail.setGuests(owner.getGuests().stream().map(GuestDto::from).toList());
         return ownerDetail;
     }
 }

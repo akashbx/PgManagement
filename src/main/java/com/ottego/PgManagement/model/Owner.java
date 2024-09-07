@@ -28,7 +28,7 @@ public class Owner {
     @NotNull
     private String email;
 
-    private String phone;
+    private Long phone;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Pg> pgs = new ArrayList<>();

@@ -2,6 +2,7 @@ package com.ottego.PgManagement.service;
 
 import com.ottego.PgManagement.Dto.ComplaintDto;
 import com.ottego.PgManagement.Dto.DishDto;
+import com.ottego.PgManagement.Dto.PgDto;
 import com.ottego.PgManagement.Request.DishRequest;
 import com.ottego.PgManagement.model.Dish;
 import com.ottego.PgManagement.model.Enum.Cuisine;
@@ -23,8 +24,12 @@ public class DishService {
     @Autowired
     private PgRepository pgRepository;
 
-    public List<DishDto> getDish() {
-        return dishRepository.findAll().stream().map(DishDto::from).toList();
+    public List<DishDto> getDish(Integer pg_id) {
+        if (pg_id != null && pg_id != 0) {
+            return dishRepository.findAllByPg_id(pg_id).stream().map(DishDto::from).toList();
+        }else {
+            return dishRepository.findAll().stream().map(DishDto::from).toList();
+        }
     }
 
     public DishDto getDishById(Integer id) {

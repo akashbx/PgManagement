@@ -41,6 +41,7 @@ public  class PgDetails{
 //      pgDetail.setRooms(pg.getRooms().stream().map(RoomWithStay::from).toList());
 //      pgDetail.setMeals(pg.getMeals().stream().map(MealDto::from).toList());
       pgDetail.setFacilities(pg.getFacility().stream().map(FacilityDto::from).toList());
+      pgDetail.setDishes(pg.getDishes().stream().map(DishDto::from).toList());
       return pgDetail;
     }
 }
