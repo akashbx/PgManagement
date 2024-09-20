@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.time.Month;
 import java.time.Year;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,6 +20,8 @@ public class InvoiceDetail {
     private Month month;
     private Integer year;
     private StayWithBedRoom stay;
+    private List<PaymentDto> payments;
+
 
     public static InvoiceDetail from(Invoice invoice) {
         InvoiceDetail invoiceDetail = new InvoiceDetail();
@@ -27,6 +30,7 @@ public class InvoiceDetail {
         invoiceDetail.setMonth(invoice.getMonth());
         invoiceDetail.setYear(invoice.getYear());
         invoiceDetail.setStay(StayWithBedRoom.from(invoice.getStay()));
+        invoiceDetail.setPayments(invoice.getPayments().stream().map(PaymentDto::from).toList());
         return invoiceDetail;
     }
 }

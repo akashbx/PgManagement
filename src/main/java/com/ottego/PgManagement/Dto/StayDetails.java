@@ -19,7 +19,7 @@ public class StayDetails {
     private LocalDate checkOut;
     private GuestDto guest;
     private BedRoom bed;
-    private List<InvoiceWithPayment> invoices;
+    private List<InvoiceDto> invoices;
     private List<ComplaintDto> complaints;
 
 
@@ -30,7 +30,7 @@ public class StayDetails {
         stayDetails.setCheckOut(stay.getCheckOut());
         stayDetails.setGuest(GuestDto.from(stay.getGuest()));
         stayDetails.setBed(BedRoom.from(stay.getBed()));
-        stayDetails.setInvoices(stay.getInvoice().stream().map(InvoiceWithPayment::from).toList());
+        stayDetails.setInvoices(stay.getInvoice().stream().map(InvoiceDto::from).toList());
         stayDetails.setComplaints(stay.getComplaint().stream().map(ComplaintDto::from).toList());
         return stayDetails;
     }
