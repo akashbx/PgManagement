@@ -30,7 +30,7 @@ public class BedDetails {
         bedDetails.setPrice(bed.getPrice());
         bedDetails.setRoom(RoomDto.from(bed.getRoom()));
         if (!bed.getStays().isEmpty()) {
-            bedDetails.setStay(StayDto.from(bed.getStays().getFirst()));
+            bedDetails.setStay(StayDto.from(bed.getStays().get(0)));
         }
         return bedDetails;
     }

@@ -30,7 +30,7 @@ public class BedWithStay {
         bedWithStay.setPrice(bed.getPrice());
 //        bedWithStay.setStays(bed.getStays().stream().map(StayDetails::from).toList());
         if (bed.getStays()!=null && !bed.getStays().isEmpty()) {
-            bedWithStay.setStay(StayDetails.from(bed.getStays().getFirst()));
+            bedWithStay.setStay(StayDetails.from(bed.getStays().get(0)));
         }
         return bedWithStay;
     }

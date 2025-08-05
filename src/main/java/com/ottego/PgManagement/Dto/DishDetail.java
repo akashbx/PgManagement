@@ -30,7 +30,7 @@ public class DishDetail {
         dishDetail.setDescription(dish.getDescription());
         dishDetail.setPrice(dish.getPrice());
         dishDetail.setPg(PgDto.from(dish.getPg()));
-        dishDetail.setMeals(MealDto.from(dish.getMeals().getLast()));
+        dishDetail.setMeals(MealDto.from(dish.getMeals().get(-1)));
         return dishDetail;
     }
 }
