@@ -30,7 +30,7 @@ public class Bed {
     @NotNull
     private BedStatus status;
 
-    @NotBlank
+    @NotNull
     private Integer price;
 
     @ManyToOne
