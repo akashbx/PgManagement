@@ -14,4 +14,5 @@ public class OwnerRequest {
     private String name;
     private String email;
     private Long phone;
+    private String password;
 }

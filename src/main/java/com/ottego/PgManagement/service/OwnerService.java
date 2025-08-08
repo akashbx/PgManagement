@@ -20,6 +20,7 @@ public class OwnerService {
         owner.setName(model.getName());
         owner.setEmail(model.getEmail());
         owner.setPhone(model.getPhone());
+        owner.setPassword(model.getPassword());
         ownerRepository.save(owner);
     }
 
@@ -29,6 +30,7 @@ public class OwnerService {
         owner.setName(request.getName());
         owner.setEmail(request.getEmail());
         owner.setPhone(request.getPhone());
+        owner.setPassword(request.getPassword());
         ownerRepository.save(owner);
     }
 
@@ -39,6 +41,10 @@ public class OwnerService {
 
     public List<OwnerDto> getOwners() {
         return ownerRepository.findAll().stream().map(OwnerDto::from).toList();
+    }
+
+    public OwnerDto getOwnerById(Integer id) {
+        return OwnerDto.from(ownerRepository.findById(id).get());
     }
 
 }

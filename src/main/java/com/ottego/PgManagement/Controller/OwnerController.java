@@ -15,9 +15,13 @@ public class OwnerController {
     @Autowired
     private OwnerService ownerService;
 
-    @GetMapping("/{id}")
+    @GetMapping("detail/{id}")
     public OwnerDetail getOwnerDetails(@PathVariable Integer id) {
        return ownerService.getOwnerDetail(id);
+    }
+    @GetMapping("/{id}")
+    public OwnerDto getOwnerById(@PathVariable Integer id) {
+        return ownerService.getOwnerById(id);
     }
     @GetMapping
     public List<OwnerDto> getOwner() {
