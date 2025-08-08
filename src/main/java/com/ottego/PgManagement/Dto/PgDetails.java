@@ -20,7 +20,7 @@ public  class PgDetails{
   private AddressDto address;
   private String phone;
   private String image;
-  private String caretaker;
+
   public Long noOfRooms = 0L;
   private List<RoomWithStay>  rooms = new ArrayList<>();
   private List<MealDto> meals = new ArrayList<>();
@@ -36,7 +36,7 @@ public  class PgDetails{
       }
       pgDetail.setPhone(pg.getPhone());
       pgDetail.setImage(pg.getImage());
-      pgDetail.setCaretaker(pg.getCaretaker());
+
       pgDetail.setNoOfRooms((long) pg.getRooms().size());
 //      pgDetail.setRooms(pg.getRooms().stream().map(RoomWithStay::from).toList());
 //      pgDetail.setMeals(pg.getMeals().stream().map(MealDto::from).toList());
