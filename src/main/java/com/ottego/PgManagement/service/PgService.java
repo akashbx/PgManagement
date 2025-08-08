@@ -32,7 +32,7 @@ public class PgService  {
         pg.setPhone(model.getPhone());
         pg.setAddress(model.getAddress());
         pg.setImage(model.getImage());
-        pg.setCaretaker(model.getCaretaker());
+
         model.getOwner_id();
         Owner owner = ownerRepository.findById(model.getOwner_id()).get();
         pg.setOwner(owner);
@@ -45,7 +45,7 @@ public class PgService  {
         pg.setPhone(request.getPhone());
         pg.setAddress(request.getAddress());
         pg.setImage(request.getImage());
-        pg.setCaretaker(request.getCaretaker());
+
         pgRepository.save(pg);
 
     }

@@ -18,7 +18,7 @@ public class PgDto {
     private AddressDto address;
     private String phone;
     private String image;
-    private String caretaker;
+
 
 
     public static PgDto from(Pg pg) {
@@ -30,7 +30,7 @@ public class PgDto {
         }
         pgDto.setPhone(pg.getPhone());
         pgDto.setImage(pg.getImage());
-        pgDto.setCaretaker(pg.getCaretaker());
+
         return pgDto;
     }
 }

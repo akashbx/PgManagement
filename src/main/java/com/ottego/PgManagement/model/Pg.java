@@ -1,7 +1,5 @@
 package com.ottego.PgManagement.model;
 
-import com.ottego.PgManagement.Dto.PgDto;
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -11,6 +9,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -35,8 +34,9 @@ public class Pg {
     @NotBlank
     public String image;
 
-    @NotBlank
-    private String caretaker;
+
+    @OneToOne(mappedBy = "pg", cascade = CascadeType.ALL)
+    private Caretaker caretaker;
 
     @ManyToOne
     @JoinColumn(name = "owner_id")
@@ -44,7 +44,6 @@ public class Pg {
 
     @OneToMany(mappedBy = "pg", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Room> rooms = new ArrayList<>();
-
 
     @OneToMany(mappedBy ="pg", cascade =CascadeType.ALL, orphanRemoval =true)
     private List<Meal> meals = new ArrayList<>();
@@ -54,6 +53,4 @@ public class Pg {
 
     @OneToMany(mappedBy = "pg", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Dish> dishes = new ArrayList<>();
-
-
 }

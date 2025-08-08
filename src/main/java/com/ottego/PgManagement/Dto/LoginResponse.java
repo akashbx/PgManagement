@@ -11,4 +11,5 @@ public class LoginResponse {
     private Integer id;
     private Long phone;
     private String token;
+    private String role;
 }

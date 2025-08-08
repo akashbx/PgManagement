@@ -15,7 +15,7 @@ public class Pgs {
     private String name;
     private String phone;
     private String image;
-    private String caretaker;
+
 
     public static Pgs from(Pg pg) {
         Pgs pgsDto = new Pgs();
@@ -23,7 +23,7 @@ public class Pgs {
         pgsDto.setName(pg.getName());
         pgsDto.setPhone(pg.getPhone());
         pgsDto.setImage(pg.getImage());
-        pgsDto.setCaretaker(pg.getCaretaker());
+
         return pgsDto;
     }
 }
