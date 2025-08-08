@@ -28,7 +28,11 @@ public class Owner {
     @NotNull
     private String email;
 
+    @Column(unique = true)
     private Long phone;
+
+    @NotNull
+    private String password;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Pg> pgs = new ArrayList<>();
