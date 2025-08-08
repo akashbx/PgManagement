@@ -15,6 +15,8 @@ import com.ottego.PgManagement.repository.PgRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -39,12 +41,26 @@ public class MealServices {
     }
 
     public List<MealDto> getMeals(Integer pg_id) {
-        if (pg_id!=null && pg_id != 0) {
-            return mealRepository.findAllByPg_Id(pg_id).stream().map(MealDto::from).toList();
-        }else {
-            return mealRepository.findAll().stream().map(MealDto::from).toList();
+        List<MealDto> meals;
+
+        if (pg_id != null && pg_id != 0) {
+            meals = mealRepository.findAllByPg_Id(pg_id)
+                    .stream()
+                    .map(MealDto::from)
+                    .toList();
+        } else {
+            meals = mealRepository.findAll()
+                    .stream()
+                    .map(MealDto::from)
+                    .toList();
         }
+
+        // Convert to mutable list and reverse
+        List<MealDto> reversedMeals = new ArrayList<>(meals);
+        Collections.reverse(reversedMeals);
+        return reversedMeals;
     }
+
 
     public void save(MealRequest model){
         Meal meal = new Meal();
