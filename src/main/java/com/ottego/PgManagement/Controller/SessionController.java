@@ -1,4 +1,4 @@
-package com.ottego.PgManagement.Controller;
+package com.ottego.PgManagement.controller;
 
 import com.ottego.PgManagement.model.Caretaker;
 import com.ottego.PgManagement.model.Owner;
@@ -39,17 +39,18 @@ public class SessionController {
             String token = authHeader.substring(7);
             Claims claims = jwtUtil.extractAllClaims(token);
 
-            // Convert Long to Integer if needed
             Integer id = claims.get("id", Number.class).intValue();
             String phone = claims.getSubject();
             String role = claims.get("role", String.class);
 
             if ("OWNER".equalsIgnoreCase(role)) {
                 Owner owner = ownerRepository.findById(id).orElseThrow();
-                return ResponseEntity.ok(new SessionResponse(owner.getId(), owner.getPhone(), owner.getName(), role));
-            } else if ("CARETAKER".equalsIgnoreCase(role)) {
+                return ResponseEntity.ok(new SessionResponse(owner.getId(), owner.getPhone(), owner.getName(), role, null));
+            }
+            else if ("CARETAKER".equalsIgnoreCase(role)) {
                 Caretaker caretaker = caretakerRepository.findById(id).orElseThrow();
-                return ResponseEntity.ok(new SessionResponse(caretaker.getId(), caretaker.getPhone(), caretaker.getName(), role));
+                Integer pgId = caretaker.getPg() != null ? caretaker.getPg().getId() : null;
+                return ResponseEntity.ok(new SessionResponse(caretaker.getId(), caretaker.getPhone(), caretaker.getName(), role, pgId));
             }
 
             return ResponseEntity.status(404).body("User not found");
@@ -59,5 +60,5 @@ public class SessionController {
         }
     }
 
-    record SessionResponse(Integer id, Long phone, String name, String role) {}
+    record SessionResponse(Integer id, Long phone, String name, String role, Integer pgId) {}
 }
