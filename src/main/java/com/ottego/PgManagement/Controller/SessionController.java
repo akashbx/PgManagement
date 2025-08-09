@@ -1,4 +1,4 @@
-package com.ottego.PgManagement.controller;
+package com.ottego.PgManagement.Controller;
 
 import com.ottego.PgManagement.model.Caretaker;
 import com.ottego.PgManagement.model.Owner;
