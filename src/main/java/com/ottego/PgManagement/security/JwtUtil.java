@@ -10,7 +10,7 @@ import java.util.Map;
 public class JwtUtil {
 
     private final String SECRET_KEY = "afafasfafafasfasfasfafacasdasfasxASFACASDFACASDFASFASFDAFASFASDAADSCSDFADCVSGCFVADXCcadwavfsfarvf"; // store securely
-    private final long EXPIRATION_TIME = 1000 * 60 * 60 * 10; // 10 hours
+    private final long EXPIRATION_TIME = 1000L * 60 * 60 * 24 * 7; // 1 week
 
     // Generate token with phone, id, and role
     public String generateToken(Long id, String phone, String role) {
