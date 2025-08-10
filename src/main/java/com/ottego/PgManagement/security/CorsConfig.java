@@ -13,7 +13,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("https://pgweb.up.railway.app/") // your frontend domain
+                        .allowedOrigins("https://pgweb.up.railway.app/","https://pgweb-ottego.vercel.app/") // your frontend domain
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowCredentials(true);
             }
