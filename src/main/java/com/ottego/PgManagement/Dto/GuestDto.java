@@ -33,7 +33,7 @@ public class GuestDto {
         guestDto.setPassword(guest.getPassword());
         guestDto.setDob(guest.getDob());
         guestDto.setProfession(guest.getProfession());
-        guestDto.setPhone(guest.getPhone());
+        guestDto.setPhone(String.valueOf(guest.getPhone()));
         guestDto.setAddress(guest.getAddress());
         guestDto.setCity(guest.getCity());
         guestDto.setState(guest.getState());

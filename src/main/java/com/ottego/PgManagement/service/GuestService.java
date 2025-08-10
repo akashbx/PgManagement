@@ -29,7 +29,7 @@ public class GuestService {
         guest.setCity(model.getCity());
         guest.setState(model.getState());
         guest.setZip(model.getZip());
-        guest.setPhone(model.getPhone());
+        guest.setPhone(Long.valueOf(model.getPhone()));
         guest.setDob(model.getDob());
         guest.setProfession(model.getProfession());
         guest.setOwner(ownerRepository.findById(model.getOwner_id()).get());
@@ -54,7 +54,7 @@ public class GuestService {
         guest.setCity(request.getCity());
         guest.setState(request.getState());
         guest.setZip(request.getZip());
-        guest.setPhone(request.getPhone());
+        guest.setPhone(Long.valueOf(request.getPhone()));
         guest.setDob(request.getDob());
         guest.setProfession(request.getProfession());
         guestRepository.save(guest);
@@ -76,7 +76,7 @@ public class GuestService {
 
         Guest guest = Guest.builder()
                 .name(name)
-                .phone(phone)
+                .phone(Long.valueOf(phone))
                 .email(email)
                 .build();
 

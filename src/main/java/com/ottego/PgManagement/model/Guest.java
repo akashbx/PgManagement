@@ -45,7 +45,7 @@ public class Guest {
 
     @NotBlank
     @Size(max = 10)
-    private String phone;
+    private Long phone;
 
     private String profession;
 

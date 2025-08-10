@@ -1,5 +1,6 @@
 package com.ottego.PgManagement.Request;
 
+import com.ottego.PgManagement.model.Diner;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,4 +16,5 @@ public class DinerRequest {
     private Integer price;
     private Integer stay_id;
     private Integer meal_id;
+    private Diner.DinerStatus status;
 }
