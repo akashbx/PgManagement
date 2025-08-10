@@ -10,11 +10,13 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface GuestRepository extends JpaRepository<Guest, Integer> {
 
     List<Guest> findByOwnerId(Integer ownerId);
+    Optional<Guest> findByPhone(Long phone);
 
 
 }

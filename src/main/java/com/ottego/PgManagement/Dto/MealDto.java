@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -23,7 +24,7 @@ public class MealDto {
         MealDto mealD = new MealDto();
         mealD.setId(meal.getId());
         mealD.setType(meal.getType());
-        mealD.setCreated_at(meal.getCreated_at());
+        mealD.setCreated_at(LocalDateTime.now().toString());
         mealD.setServed_at(meal.getServed_at());
         mealD.setDishes(meal.getDishes().stream().map(DishDto::from).toList());
         return mealD;

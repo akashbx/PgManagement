@@ -15,6 +15,7 @@ import com.ottego.PgManagement.repository.PgRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -66,7 +67,7 @@ public class MealServices {
         Meal meal = new Meal();
 
         meal.setType(MealType.valueOf(model.getType()));
-        meal.setCreated_at(model.getCreated_at());
+        meal.setCreated_at(LocalDateTime.now());
         meal.setServed_at(model.getServed_at());
         model.getPg_id();
         model.getDish_ids();
@@ -82,7 +83,7 @@ public class MealServices {
         Meal meal = mealRepository.findById(request.getId()).get();
 
         meal.setType(MealType.valueOf(request.getType()));
-        meal.setCreated_at(request.getCreated_at());
+        meal.setCreated_at(LocalDateTime.now());
         meal.setServed_at(request.getServed_at());
 //        request.getPg_id();
         request.getDish_ids();

@@ -34,7 +34,7 @@ public class GuestWithStays {
         guestWithStays.setPassword(guest.getPassword());
         guestWithStays.setDob(guest.getDob());
         guestWithStays.setProfession(guest.getProfession());
-        guestWithStays.setPhone(guest.getPhone());
+        guestWithStays.setPhone(String.valueOf(guest.getPhone()));
         guestWithStays.setAddress(guest.getAddress());
         guestWithStays.setCity(guest.getCity());
         guestWithStays.setState(guest.getState());

@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class Meal {
     private MealType type;
 
     @CreationTimestamp
-    private String created_at;
+    private LocalDateTime created_at;
 
     @Timestamp
     private String served_at;

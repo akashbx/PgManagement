@@ -11,7 +11,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "diners", uniqueConstraints = {@UniqueConstraint(columnNames = {"stay_id", "meal_id"})})
+@Table(
+        name = "diners",
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"stay_id", "meal_id"})}
+)
 public class Diner {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,12 +24,19 @@ public class Diner {
 
     private Integer price;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private DinerStatus status = DinerStatus.REGISTERED; // default
 
     @ManyToOne
-    @JoinColumn(columnDefinition = "stay_id")
+    @JoinColumn(name = "stay_id")
     private Stay stay;
 
     @ManyToOne
-    @JoinColumn(columnDefinition = "meal_id")
+    @JoinColumn(name = "meal_id")
     private Meal meal;
+
+    public enum DinerStatus {
+        REGISTERED, PRESENT, ABSENT
+    }
 }
