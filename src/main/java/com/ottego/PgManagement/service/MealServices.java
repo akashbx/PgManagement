@@ -83,7 +83,6 @@ public class MealServices {
         Meal meal = mealRepository.findById(request.getId()).get();
 
         meal.setType(MealType.valueOf(request.getType()));
-        meal.setCreated_at(LocalDateTime.now());
         meal.setServed_at(request.getServed_at());
 //        request.getPg_id();
         request.getDish_ids();

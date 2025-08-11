@@ -28,7 +28,9 @@ public class MealDetail {
         MealDetail mealDetail = new MealDetail();
         mealDetail.setId(meal.getId());
         mealDetail.setType(meal.getType());
-        mealDetail.setCreated_at(LocalDateTime.now().toString());
+        mealDetail.setCreated_at(meal.getCreated_at() != null
+                ? meal.getCreated_at().toString()
+                : null);
         mealDetail.setServed_at(meal.getServed_at());
         mealDetail.setDishes(meal.getDishes().stream().map(DishDto::from).toList());
         mealDetail.setDiners(meal.getDiners().stream().map(DinerDto::from).toList());
