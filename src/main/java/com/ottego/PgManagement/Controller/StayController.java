@@ -63,8 +63,8 @@ public class StayController {
         return stayService.getActiveStays();
     }
 
-    @GetMapping("/{guest_id}")
-    public List<StayDetails> getStaysByGuest(@PathVariable Long guest_id) {
-        return stayService.getStaysByGuestId(guest_id);
-    }
+//    @GetMapping("/{guest_id}")
+//    public List<StayDetails> getStaysByGuest(@PathVariable Long guest_id) {
+//        return stayService.getStaysByGuestId(guest_id);
+//    }
 }
