@@ -4,6 +4,7 @@ import com.ottego.PgManagement.Dto.StayDetails;
 import com.ottego.PgManagement.Dto.StayDto;
 import com.ottego.PgManagement.Dto.StayWithBedRoom;
 import com.ottego.PgManagement.Request.StayRequest;
+import com.ottego.PgManagement.model.Stay;
 import com.ottego.PgManagement.service.StayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,8 +28,12 @@ public class StayController {
     }
 
     @GetMapping
-    public List<StayDetails> getAllStays(@RequestParam (required = false) Integer bed_id) {
-        return stayService.getAllStays(bed_id);
+    public List<StayDetails> getStays(
+            @RequestParam(required = false) Integer bedId,
+            @RequestParam(required = false) Integer guestId,
+            @RequestParam(required = false) Integer pgId,
+            @RequestParam(required = false) String status) {
+        return stayService.getAllStays(bedId, guestId, pgId, status);
     }
 
     @PutMapping
@@ -56,5 +61,10 @@ public class StayController {
     @GetMapping("/getActiveStays")
     public List<StayWithBedRoom> getActiveStays() {
         return stayService.getActiveStays();
+    }
+
+    @GetMapping("/{guest_id}")
+    public List<StayDetails> getStaysByGuest(@PathVariable Long guest_id) {
+        return stayService.getStaysByGuestId(guest_id);
     }
 }

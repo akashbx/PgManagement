@@ -67,13 +67,52 @@ public class StayService {
     }
 
 
-    public List<StayDetails> getAllStays(Integer Bed_id) {
-        if (Bed_id != null && Bed_id != 0) {
-            return stayRepository.findAllByBed_Id(Bed_id).stream().map(StayDetails::from).toList();
-        } else {
-            return stayRepository.findAll().stream().map(StayDetails::from).toList();
+    public List<StayDetails> getAllStays(Integer bedId, Integer guestId, Integer pgId, String status) {
+
+        // Fetch all stays first
+        List<Stay> stays = stayRepository.findAll();
+
+        // Filter by bed_id
+        if (bedId != null && bedId != 0) {
+            stays = stays.stream()
+                    .filter(stay -> stay.getBed() != null && stay.getBed().getId().equals(bedId))
+                    .toList();
         }
+
+        // Filter by guest_id
+        if (guestId != null && guestId != 0) {
+            stays = stays.stream()
+                    .filter(stay -> stay.getGuest() != null && stay.getGuest().getId().equals(guestId))
+                    .toList();
+        }
+
+        // Filter by pg_id (SuperParent ID)
+        if (pgId != null && pgId != 0) {
+            stays = stays.stream()
+                    .filter(stay -> stay.getBed() != null &&
+                            stay.getBed().getRoom() != null &&
+                            stay.getBed().getRoom().getPg() != null &&
+                            stay.getBed().getRoom().getPg().getId().equals(pgId))
+                    .toList();
+        }
+
+
+        // Filter by status
+        if (status != null && !status.isEmpty()) {
+            if (status.equalsIgnoreCase("checked_in")) {
+                stays = stays.stream()
+                        .filter(stay -> stay.getCheckOut() == null)
+                        .toList();
+            } else if (status.equalsIgnoreCase("checked_out")) {
+                stays = stays.stream()
+                        .filter(stay -> stay.getCheckOut() != null)
+                        .toList();
+            }
+        }
+
+        return stays.stream().map(StayDetails::from).toList();
     }
+
 
     public StayDetails getStayById(Integer id) {
         return StayDetails.from(stayRepository.findById(id).get());
@@ -98,6 +137,10 @@ public class StayService {
     }
     public List<StayWithBedRoom> getActiveStays() {
         return stayRepository.findAllByCheckOutIsNull().stream().map(StayWithBedRoom::from).toList();
+    }
+
+    public List<StayDetails> getStaysByGuestId(Long guest_id) {
+        return stayRepository.findByGuestId(guest_id);
     }
 
 }
