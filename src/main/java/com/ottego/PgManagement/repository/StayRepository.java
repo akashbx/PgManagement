@@ -1,6 +1,7 @@
 package com.ottego.PgManagement.repository;
 
 
+import com.ottego.PgManagement.Dto.StayDetails;
 import com.ottego.PgManagement.model.Stay;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -16,6 +17,7 @@ public interface StayRepository extends JpaRepository<Stay, Integer>, JpaSpecifi
     @Query("SELECT c FROM Stay c WHERE c.bed.room.pg.id = :pg_id")
     List<Stay> findBySuperParentId(@Param("pg_id") Integer pg_id);
 
+    List<StayDetails> findByGuestId(Long guest_id);
 
     List<Stay> findAllByCheckOutIsNull();
 }
