@@ -14,14 +14,16 @@ public class DinerDto {
     private Integer id;
     private String item;
     private Integer price;
-    private StayDto stay;
+//    private StayDto stay;
+    private MealDto meal;
 
     public static DinerDto from(Diner diner) {
         DinerDto dinerDto = new DinerDto();
         dinerDto.setId(diner.getId());
         dinerDto.setItem(diner.getItem());
         dinerDto.setPrice(diner.getPrice());
-        dinerDto.setStay(StayDto.from(diner.getStay()));
+//        dinerDto.setStay(StayDto.from(diner.getStay()));
+        dinerDto.setMeal(MealDto.from(diner.getMeal()));
         return dinerDto;
     }
 }

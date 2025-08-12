@@ -1,9 +1,7 @@
 package com.ottego.PgManagement.Controller;
 
 import com.ottego.PgManagement.Dto.DinerDto;
-import com.ottego.PgManagement.Dto.DinerMealDto;
 import com.ottego.PgManagement.Request.DinerRequest;
-import com.ottego.PgManagement.model.Diner;
 import com.ottego.PgManagement.service.DinerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +15,8 @@ public class DinerController {
     private DinerService dinerService;
 
     @GetMapping
-    public List<DinerMealDto> getDiners(@RequestParam(required = false) Integer stay_id) {
-        return dinerService.getDinerMealsByStayId(Long.valueOf(stay_id));
+    public List<DinerDto> getDiners(@RequestParam(required = false) Integer stay_id) {
+        return dinerService.getDiners(Long.valueOf(stay_id));
     }
 
     @GetMapping("/{id}")

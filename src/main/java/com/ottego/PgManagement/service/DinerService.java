@@ -1,7 +1,6 @@
 package com.ottego.PgManagement.service;
 
 import com.ottego.PgManagement.Dto.DinerDto;
-import com.ottego.PgManagement.Dto.DinerMealDto;
 import com.ottego.PgManagement.Request.DinerRequest;
 import com.ottego.PgManagement.model.Diner;
 import com.ottego.PgManagement.model.Diner.DinerStatus;
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class DinerService {
@@ -23,10 +21,10 @@ public class DinerService {
     @Autowired
     private StayRepository stayRepository;
 
-    public List<DinerMealDto> getDinerMealsByStayId(Long stayId) {
-        return dinerRepository.findByStayIdWithMeals(stayId)
+    public List<DinerDto> getDiners(Long stayId) {
+        return dinerRepository.findDinersByStay_Id(stayId)
                 .stream()
-                .map(DinerMealDto::from)
+                .map(DinerDto::from)
                 .toList();
     }
 
