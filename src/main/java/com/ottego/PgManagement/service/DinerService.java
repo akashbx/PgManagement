@@ -1,6 +1,7 @@
 package com.ottego.PgManagement.service;
 
 import com.ottego.PgManagement.Dto.DinerDto;
+import com.ottego.PgManagement.Dto.DinerMealDto;
 import com.ottego.PgManagement.Request.DinerRequest;
 import com.ottego.PgManagement.model.Diner;
 import com.ottego.PgManagement.model.Diner.DinerStatus;
@@ -22,19 +23,13 @@ public class DinerService {
     @Autowired
     private StayRepository stayRepository;
 
-    public List<DinerDto> getDiners(Integer stayId) {
-        List<Diner> diners;
-
-        if (stayId != null && stayId != 0) {
-            diners = dinerRepository.findByStay_Id(stayId);
-        } else {
-            diners = dinerRepository.findAll();
-        }
-
-        return diners.stream()
-                .map(DinerDto::from)
-                .collect(Collectors.toList());
+    public List<DinerMealDto> getDinerMealsByStayId(Long stayId) {
+        return dinerRepository.findByStayIdWithMeals(stayId)
+                .stream()
+                .map(DinerMealDto::from)
+                .toList();
     }
+
 
 
     public DinerDto getDinerById(Integer id) {
