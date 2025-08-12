@@ -36,8 +36,8 @@ public class DinerController {
         dinerService.update(request);
         return "Diner updated successfully";
     }
-    @GetMapping("/stay/{stayId}")
-    public List<DinerDto> getDinersByStayId(@PathVariable Long stayId) {
-        return dinerService.getDinersByStayId(stayId);
+    @GetMapping("/stay/{stay_id}")
+    public List<DinerDto> getDinersByStayId(@PathVariable Long stay_id) {
+        return dinerService.getDinersByStayId(stay_id);
     }
 }
