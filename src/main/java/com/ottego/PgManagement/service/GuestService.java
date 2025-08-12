@@ -21,6 +21,36 @@ public class GuestService {
     private OwnerRepository ownerRepository;
 
     public void addGuest(GuestRequest model) {
+
+        if (model.getName() == null || model.getName().trim().isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be empty");
+        }
+
+        if (model.getPhone() == null || !model.getPhone().matches("\\d{10}")) {
+            throw new IllegalArgumentException("Phone must be exactly 10 digits");
+        }
+
+        String passwordPattern = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>/?]).{8,}$";
+        if (model.getPassword() == null || !model.getPassword().matches(passwordPattern)) {
+            throw new IllegalArgumentException(
+                    "Password must contain at least 1 uppercase letter, 1 number, 1 special character, and be at least 8 characters long"
+            );
+        }
+
+        String emailPattern = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        if (model.getEmail() == null || !model.getEmail().matches(emailPattern)) {
+            throw new IllegalArgumentException("Invalid email format");
+        }
+
+        if (model.getZip() != null && !model.getZip().matches("\\d{6}")) {
+            throw new IllegalArgumentException("ZIP code must be 6 digits");
+        }
+
+        if (model.getDob() != null && model.getDob().isAfter(java.time.LocalDate.now())) {
+            throw new IllegalArgumentException("Date of birth cannot be in the future");
+        }
+
+        // If all validations pass, create and save Guest
         Guest guest = new Guest();
         guest.setName(model.getName());
         guest.setEmail(model.getEmail());
@@ -30,11 +60,13 @@ public class GuestService {
         guest.setState(model.getState());
         guest.setZip(model.getZip());
         guest.setPhone(Long.valueOf(model.getPhone()));
-        guest.setDob(model.getDob());
+        guest.setDob(String.valueOf(model.getDob()));
         guest.setProfession(model.getProfession());
-        guest.setOwner(ownerRepository.findById(model.getOwner_id()).get());
+        guest.setOwner(ownerRepository.findById(model.getOwner_id())
+                .orElseThrow(() -> new IllegalArgumentException("Owner not found")));
         guestRepository.save(guest);
     }
+
 
     public List<GuestDto> getGuest(Integer owner_id) {
         if (owner_id!= null && owner_id != 0) {
@@ -55,7 +87,7 @@ public class GuestService {
         guest.setState(request.getState());
         guest.setZip(request.getZip());
         guest.setPhone(Long.valueOf(request.getPhone()));
-        guest.setDob(request.getDob());
+        guest.setDob(String.valueOf(request.getDob()));
         guest.setProfession(request.getProfession());
         guestRepository.save(guest);
     }

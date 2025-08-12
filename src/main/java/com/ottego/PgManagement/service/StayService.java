@@ -2,6 +2,7 @@ package com.ottego.PgManagement.service;
 
 import com.ottego.PgManagement.Dto.StayDetails;
 import com.ottego.PgManagement.Dto.StayDto;
+import com.ottego.PgManagement.Dto.StayShortDto;
 import com.ottego.PgManagement.Dto.StayWithBedRoom;
 import com.ottego.PgManagement.Request.StayRequest;
 import com.ottego.PgManagement.model.Bed;
@@ -67,7 +68,7 @@ public class StayService {
     }
 
 
-    public List<StayDetails> getAllStays(Integer bedId, Integer guestId, Integer pgId, String status) {
+    public List<StayShortDto> getAllStays(Integer bedId, Integer guestId, Integer pgId, String status) {
 
         // Fetch all stays first
         List<Stay> stays = stayRepository.findAll();
@@ -110,7 +111,7 @@ public class StayService {
             }
         }
 
-        return stays.stream().map(StayDetails::from).toList();
+        return stays.stream().map(StayShortDto::from).toList();
     }
 
 
@@ -139,8 +140,6 @@ public class StayService {
         return stayRepository.findAllByCheckOutIsNull().stream().map(StayWithBedRoom::from).toList();
     }
 
-    public List<StayDetails> getStaysByGuestId(Long guest_id) {
-        return stayRepository.findByGuestId(guest_id);
-    }
+
 
 }

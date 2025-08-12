@@ -2,6 +2,7 @@ package com.ottego.PgManagement.Controller;
 
 import com.ottego.PgManagement.Dto.DinerDto;
 import com.ottego.PgManagement.Request.DinerRequest;
+import com.ottego.PgManagement.model.Diner;
 import com.ottego.PgManagement.service.DinerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -34,5 +35,9 @@ public class DinerController {
     public String updateDiner(@RequestBody DinerRequest request) {
         dinerService.update(request);
         return "Diner updated successfully";
+    }
+    @GetMapping("/stay/{stayId}")
+    public List<DinerDto> getDinersByStayId(@PathVariable Long stayId) {
+        return dinerService.getDinersByStayId(stayId);
     }
 }

@@ -2,6 +2,7 @@ package com.ottego.PgManagement.Controller;
 
 import com.ottego.PgManagement.Dto.StayDetails;
 import com.ottego.PgManagement.Dto.StayDto;
+import com.ottego.PgManagement.Dto.StayShortDto;
 import com.ottego.PgManagement.Dto.StayWithBedRoom;
 import com.ottego.PgManagement.Request.StayRequest;
 import com.ottego.PgManagement.model.Stay;
@@ -28,7 +29,7 @@ public class StayController {
     }
 
     @GetMapping
-    public List<StayDetails> getStays(
+    public List<StayShortDto> getStays(
             @RequestParam(required = false) Integer bedId,
             @RequestParam(required = false) Integer guestId,
             @RequestParam(required = false) Integer pgId,
