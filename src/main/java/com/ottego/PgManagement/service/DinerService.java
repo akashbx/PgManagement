@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class DinerService {
@@ -21,9 +22,20 @@ public class DinerService {
     @Autowired
     private StayRepository stayRepository;
 
-    public List<DinerDto> getDiner() {
-        return dinerRepository.findAll().stream().map(DinerDto::from).toList();
+    public List<DinerDto> getDiners(Integer stayId) {
+        List<Diner> diners;
+
+        if (stayId != null && stayId != 0) {
+            diners = dinerRepository.findByStay_Id(stayId);
+        } else {
+            diners = dinerRepository.findAll();
+        }
+
+        return diners.stream()
+                .map(DinerDto::from)
+                .collect(Collectors.toList());
     }
+
 
     public DinerDto getDinerById(Integer id) {
         return dinerRepository.findById(id)
@@ -64,7 +76,5 @@ public class DinerService {
 
         dinerRepository.save(diner);
     }
-    public List<DinerDto> getDinersByStayId(Long stay_id) {
-        return dinerRepository.findByStayId(stay_id);
-    }
+
 }

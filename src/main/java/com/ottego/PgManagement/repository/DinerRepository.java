@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface DinerRepository extends JpaRepository<Diner, Integer> {
-    List<DinerDto> findByStayId(Long stay_id);
+    List<Diner> findByStay_Id(Integer stayId);
 
 }
