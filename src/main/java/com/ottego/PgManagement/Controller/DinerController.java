@@ -16,8 +16,8 @@ public class DinerController {
     private DinerService dinerService;
 
     @GetMapping
-    public List<DinerDto> getDiners() {
-        return dinerService.getDiner();
+    public List<DinerDto> getDiners(@RequestParam(required = false) Integer stay_id) {
+        return dinerService.getDiners(stay_id);
     }
 
     @GetMapping("/{id}")
@@ -36,8 +36,5 @@ public class DinerController {
         dinerService.update(request);
         return "Diner updated successfully";
     }
-    @GetMapping("/stay/{stay_id}")
-    public List<DinerDto> getDinersByStayId(@PathVariable Long stay_id) {
-        return dinerService.getDinersByStayId(stay_id);
-    }
+
 }
