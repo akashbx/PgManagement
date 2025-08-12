@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.text.DateFormat;
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -14,7 +17,7 @@ public class GuestRequest {
     private String email;
     private String name;
     private String phone;
-    private String dob;
+    private LocalDate dob;
     private String profession;
     private String password;
     private String address;

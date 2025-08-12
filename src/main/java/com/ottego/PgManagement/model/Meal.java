@@ -54,8 +54,9 @@ public class Meal {
             case BREAKFAST:
                 return 50;
             case LUNCH:
+                return 70;
             case DINNER:
-                return 60;
+                return 80;
             default:
                 return 0;
         }
