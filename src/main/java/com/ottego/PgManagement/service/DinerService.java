@@ -64,7 +64,7 @@ public class DinerService {
 
         dinerRepository.save(diner);
     }
-    public List<DinerDto> getDinersByStayId(Long stayId) {
-        return dinerRepository.findByStayId(stayId);
+    public List<DinerDto> getDinersByStayId(Long stay_id) {
+        return dinerRepository.findByStayId(stay_id);
     }
 }
