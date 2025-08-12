@@ -14,12 +14,4 @@ public class GuestDinerDto {
     private String name;
     private String phone;
     private String city;
-
-    public static GuestDinerDto from(Guest guest) {
-        GuestDinerDto guestDinerDto = new GuestDinerDto();
-        guestDinerDto.setName(guestDinerDto.name);
-        guestDinerDto.setPhone(guest.getPhone().toString());
-        guestDinerDto.setCity(guest.getCity());
-        return guestDinerDto;
-    }
 }

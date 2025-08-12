@@ -41,8 +41,6 @@ public class DinerMealDto {
                     diner.getStay().getGuest().getCity()
             ));
         }
-
-
         return dto;
     }
 }
