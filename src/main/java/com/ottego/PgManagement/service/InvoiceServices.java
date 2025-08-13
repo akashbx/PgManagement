@@ -45,7 +45,7 @@ public class InvoiceServices {
 
     public void save(InvoiceRequest model) {
         Invoice invoice = new Invoice();
-//        invoice.setAmount(String.valueOf(calculateRent(model.getAmount())));
+        invoice.setAmount(stayService.calculateTotalCost(model.getStayId()));
 
         Stay stay = stayRepository.findById(model.getStayId()).get();
 
