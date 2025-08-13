@@ -17,5 +17,5 @@ public class InvoiceRequest {
     private Integer amount;
     private Month month;
     private Integer year;
-    private Integer stayId;
+    private Integer stay_id;
 }

@@ -45,9 +45,9 @@ public class InvoiceServices {
 
     public void save(InvoiceRequest model) {
         Invoice invoice = new Invoice();
-//        invoice.setAmount(String.valueOf(calculateRent(model.getAmount())));
+        invoice.setAmount(stayService.calculateTotalCost(model.getStay_id()));
 
-        Stay stay = stayRepository.findById(model.getStayId()).get();
+        Stay stay = stayRepository.findById(model.getStay_id()).get();
 
         invoice.setStay(stay);
 
@@ -57,7 +57,7 @@ public class InvoiceServices {
     public void update(InvoiceRequest request) {
         Invoice invoice = invoiceRepository.findById(request.getId()).get();
         invoice.setAmount(request.getAmount());
-        invoice.setStay(stayRepository.findById(request.getStayId()).get());
+        invoice.setStay(stayRepository.findById(request.getStay_id()).get());
         invoiceRepository.save(invoice);
     }
     public List<InvoiceDetail> generateRentInvoices(Month month, Integer year) {
