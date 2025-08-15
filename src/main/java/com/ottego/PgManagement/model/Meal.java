@@ -28,6 +28,8 @@ public class Meal {
     @Enumerated(EnumType.STRING)
     private MealType type;
 
+    private Integer price;
+
     @CreationTimestamp
     private LocalDateTime created_at;
 

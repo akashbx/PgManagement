@@ -67,6 +67,7 @@ public class MealServices {
         Meal meal = new Meal();
 
         meal.setType(MealType.valueOf(model.getType()));
+        meal.setPrice(model.getPrice());
         meal.setCreated_at(LocalDateTime.now());
         meal.setServed_at(model.getServed_at());
         model.getPg_id();
@@ -83,6 +84,7 @@ public class MealServices {
         Meal meal = mealRepository.findById(request.getId()).get();
 
         meal.setType(MealType.valueOf(request.getType()));
+        meal.setPrice(request.getPrice());
         meal.setServed_at(request.getServed_at());
 //        request.getPg_id();
         request.getDish_ids();
