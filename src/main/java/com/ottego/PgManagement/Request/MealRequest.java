@@ -14,6 +14,7 @@ import java.util.List;
 public class MealRequest {
     private Integer id;
     private String type;
+    private Integer price;
     private String created_at;
     private String served_at;
     private Integer pg_id;

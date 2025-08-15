@@ -17,6 +17,7 @@ import java.util.List;
 public class MealDto {
     private Integer id;
     private MealType Type;
+    private Integer price;
     private String created_at;
     private String served_at;
     private List<DishDto> dishes;
@@ -24,6 +25,7 @@ public class MealDto {
         MealDto mealD = new MealDto();
         mealD.setId(meal.getId());
         mealD.setType(meal.getType());
+        mealD.setPrice(meal.getPrice());
         mealD.setCreated_at(meal.getCreated_at().toString());
         mealD.setServed_at(meal.getServed_at());
         mealD.setDishes(meal.getDishes().stream().map(DishDto::from).toList());

@@ -18,6 +18,7 @@ import java.util.List;
 public class MealDetail {
     private Integer id;
     private MealType Type;
+    private Integer price;
     private String created_at;
     private String served_at;
     private List<DishDto> dishes;
@@ -28,6 +29,7 @@ public class MealDetail {
         MealDetail mealDetail = new MealDetail();
         mealDetail.setId(meal.getId());
         mealDetail.setType(meal.getType());
+        mealDetail.setPrice(meal.getPrice());
         mealDetail.setCreated_at(meal.getCreated_at() != null
                 ? meal.getCreated_at().toString()
                 : null);
