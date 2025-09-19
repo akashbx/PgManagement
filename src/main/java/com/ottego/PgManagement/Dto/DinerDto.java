@@ -16,6 +16,7 @@ public class DinerDto {
     private Integer price;
     private StayDto stay;
     private MealDto meal;
+    private Diner.DinerStatus status;
 
     public static DinerDto from(Diner diner) {
         DinerDto dinerDto = new DinerDto();
@@ -24,6 +25,7 @@ public class DinerDto {
         dinerDto.setPrice(diner.getPrice());
         dinerDto.setStay(StayDto.from(diner.getStay()));
         dinerDto.setMeal(MealDto.from(diner.getMeal()));
+        dinerDto.setStatus(diner.getStatus());
         return dinerDto;
     }
 }
