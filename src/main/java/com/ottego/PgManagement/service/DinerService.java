@@ -55,14 +55,8 @@ public class DinerService {
         Diner diner = dinerRepository.findById(request.getId())
                 .orElseThrow(() -> new RuntimeException("Diner not found with id: " + request.getId()));
 
-        diner.setItem(request.getItem());
-        diner.setPrice(request.getPrice());
-        diner.setMeal(mealRepository.findById(request.getMeal_id())
-                .orElseThrow(() -> new RuntimeException("Meal not found")));
-        diner.setStay(stayRepository.findById(request.getStay_id())
-                .orElseThrow(() -> new RuntimeException("Stay not found")));
+        
 
-        // Update status if provided
         if (request.getStatus() != null) {
             diner.setStatus(request.getStatus());
         }
