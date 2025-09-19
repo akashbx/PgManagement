@@ -1,14 +1,12 @@
 package com.ottego.PgManagement.Request;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class OwnerRequest {
     private Integer id;
     private String name;
