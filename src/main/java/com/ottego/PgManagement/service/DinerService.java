@@ -10,7 +10,9 @@ import com.ottego.PgManagement.repository.StayRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class DinerService {
@@ -25,8 +27,15 @@ public class DinerService {
         return dinerRepository.findDinersByStay_Id(stayId)
                 .stream()
                 .map(DinerDto::from)
-                .toList();
+                .collect(Collectors.collectingAndThen(
+                        Collectors.toList(),
+                        list -> {
+                            Collections.reverse(list);
+                            return list;
+                        }
+                ));
     }
+
 
 
 
